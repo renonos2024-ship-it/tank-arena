@@ -1,13 +1,15 @@
 # Tank Arena
 
-スマホでも遊べるブラウザ用の見下ろし型タンクバトルです。
+スマホでもPCでも遊べるステージ制のブラウザ用タンクバトルです。
 
 ## Features
 
 - Static HTML/CSS/JS only
 - Mobile touch controls
-- Desktop keyboard controls
+- Desktop keyboard controls: Arrow keys to move, Space to fire
 - PeerJS room-code multiplayer
+- Stage progression in solo and online modes
+- One-hit elimination and arena mines
 - GitHub Pages compatible
 
 ## Local Preview

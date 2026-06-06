@@ -17,9 +17,10 @@ const H = canvas.height;
 const ARENA = { x: 32, y: 32, w: W - 64, h: H - 64 };
 const TANK_R = 18;
 const BULLET_R = 5;
+const MINE_R = 14;
 const SHOT_COOLDOWN = 380;
 
-const walls = [
+const BASE_WALLS = [
   { x: 210, y: 110, w: 42, h: 190 },
   { x: 210, y: 390, w: 42, h: 140 },
   { x: 708, y: 110, w: 42, h: 190 },
@@ -27,6 +28,31 @@ const walls = [
   { x: 405, y: 88, w: 150, h: 42 },
   { x: 405, y: 510, w: 150, h: 42 },
   { x: 448, y: 260, w: 64, h: 120 },
+];
+
+const STAGE_WALLS = [
+  [],
+  [
+    { x: 308, y: 292, w: 344, h: 42 },
+  ],
+  [
+    { x: 315, y: 176, w: 42, h: 120 },
+    { x: 603, y: 344, w: 42, h: 120 },
+  ],
+  [
+    { x: 344, y: 198, w: 272, h: 36 },
+    { x: 344, y: 406, w: 272, h: 36 },
+  ],
+  [
+    { x: 304, y: 164, w: 42, h: 312 },
+    { x: 614, y: 164, w: 42, h: 312 },
+  ],
+  [
+    { x: 324, y: 126, w: 42, h: 118 },
+    { x: 594, y: 126, w: 42, h: 118 },
+    { x: 324, y: 396, w: 42, h: 118 },
+    { x: 594, y: 396, w: 42, h: 118 },
+  ],
 ];
 
 const keys = new Set();
@@ -42,6 +68,11 @@ let winnerText = "";
 let winnerUntil = 0;
 
 const state = {
+  stage: 1,
+  roundOverUntil: 0,
+  nextStage: 1,
+  walls: [],
+  mines: [],
   bullets: [],
   tanks: {
     p1: makeTank("p1", 104, H / 2, 0, "#f5c542"),
@@ -50,7 +81,89 @@ const state = {
 };
 
 function makeTank(id, x, y, a, color) {
-  return { id, x, y, a, color, hp: 5, score: 0, dead: false, respawnAt: 0 };
+  return { id, x, y, a, color, score: 0, dead: false, respawnAt: 0 };
+}
+
+function cloneRects(rects) {
+  return rects.map((r) => ({ ...r }));
+}
+
+function stageWalls(stage) {
+  const layout = STAGE_WALLS[(stage - 1) % STAGE_WALLS.length];
+  return cloneRects([...BASE_WALLS, ...layout]);
+}
+
+function stageMines(stage) {
+  const mineSets = [
+    [
+      { x: 326, y: 206 },
+      { x: 634, y: 434 },
+    ],
+    [
+      { x: 326, y: 206 },
+      { x: 634, y: 206 },
+      { x: 480, y: 452 },
+    ],
+    [
+      { x: 326, y: 434 },
+      { x: 634, y: 206 },
+      { x: 480, y: 188 },
+      { x: 480, y: 452 },
+    ],
+    [
+      { x: 326, y: 206 },
+      { x: 634, y: 206 },
+      { x: 326, y: 434 },
+      { x: 634, y: 434 },
+      { x: 480, y: 320 },
+    ],
+    [
+      { x: 278, y: 188 },
+      { x: 682, y: 188 },
+      { x: 278, y: 452 },
+      { x: 682, y: 452 },
+      { x: 480, y: 188 },
+      { x: 480, y: 452 },
+    ],
+    [
+      { x: 252, y: 320 },
+      { x: 372, y: 244 },
+      { x: 588, y: 396 },
+      { x: 708, y: 320 },
+      { x: 480, y: 188 },
+      { x: 480, y: 452 },
+    ],
+  ];
+  const layout = mineSets[(stage - 1) % mineSets.length];
+  return layout.map((m) => ({ ...m, active: true }));
+}
+
+function resetTank(tank, left) {
+  Object.assign(tank, {
+    x: left ? 104 : W - 104,
+    y: H / 2,
+    a: left ? 0 : Math.PI,
+    dead: false,
+    respawnAt: 0,
+    lastShot: 0,
+  });
+}
+
+function startStage(stage, keepScores = true) {
+  state.stage = Math.max(1, stage);
+  state.nextStage = state.stage;
+  state.roundOverUntil = 0;
+  state.walls = stageWalls(state.stage);
+  state.mines = stageMines(state.stage);
+  state.bullets = [];
+  resetTank(state.tanks.p1, true);
+  resetTank(state.tanks.p2, false);
+  if (!keepScores) {
+    state.tanks.p1.score = 0;
+    state.tanks.p2.score = 0;
+  }
+  winnerText = `STAGE ${state.stage}`;
+  winnerUntil = performance.now() + 900;
 }
 
 function setStatus(text) {
@@ -83,6 +196,7 @@ hostBtn.addEventListener("click", () => {
     return;
   }
   cleanupPeer();
+  startStage(1, false);
   const id = roomId();
   netRole = "host";
   peer = new Peer(id);
@@ -113,6 +227,7 @@ soloBtn.addEventListener("click", () => {
   cleanupPeer();
   netRole = "solo";
   roomBox.hidden = true;
+  startStage(1, false);
   setStatus("Solo ready");
 });
 
@@ -211,6 +326,7 @@ function moveTank(tank, move, dt) {
     tank.a = Math.atan2(ny, nx);
     const speed = 150;
     tryMove(tank, nx * speed * dt, ny * speed * dt);
+    checkMineHit(tank);
   }
 }
 
@@ -225,11 +341,11 @@ function tryMove(tank, dx, dy) {
 
 function collidesTank(t) {
   if (t.x - TANK_R < ARENA.x || t.x + TANK_R > ARENA.x + ARENA.w || t.y - TANK_R < ARENA.y || t.y + TANK_R > ARENA.y + ARENA.h) return true;
-  return walls.some((w) => circleRect(t.x, t.y, TANK_R, w));
+  return state.walls.some((w) => circleRect(t.x, t.y, TANK_R, w));
 }
 
 function fire(tank, now) {
-  if (tank.dead || now - tank.lastShot < SHOT_COOLDOWN) return;
+  if (tank.dead || state.roundOverUntil || now - tank.lastShot < SHOT_COOLDOWN) return;
   tank.lastShot = now;
   state.bullets.push({
     owner: tank.id,
@@ -239,6 +355,30 @@ function fire(tank, now) {
     vy: Math.sin(tank.a) * 420,
     life: 1.8,
   });
+}
+
+function killTank(tank, scorerId, text) {
+  if (tank.dead || state.roundOverUntil) return;
+  tank.dead = true;
+  tank.respawnAt = performance.now() + 1300;
+  if (scorerId && state.tanks[scorerId]) state.tanks[scorerId].score += 1;
+  winnerText = text;
+  winnerUntil = performance.now() + 900;
+  state.nextStage = tank.id === "p2" ? state.stage + 1 : state.stage;
+  state.roundOverUntil = performance.now() + 1200;
+}
+
+function checkMineHit(tank) {
+  for (const mine of state.mines) {
+    if (!mine.active || tank.dead) continue;
+    if (Math.hypot(tank.x - mine.x, tank.y - mine.y) < TANK_R + MINE_R) {
+      mine.active = false;
+      killTank(tank, null, `${tank.id.toUpperCase()} hit a mine`);
+      window.setTimeout(() => {
+        mine.active = true;
+      }, 3500);
+    }
+  }
 }
 
 function updateBullets(dt) {
@@ -254,37 +394,21 @@ function updateBullets(dt) {
       b.vy *= -1;
       b.y = Math.max(ARENA.y, Math.min(ARENA.y + ARENA.h, b.y));
     }
-    if (walls.some((w) => circleRect(b.x, b.y, BULLET_R, w))) b.life = 0;
+    if (state.walls.some((w) => circleRect(b.x, b.y, BULLET_R, w))) b.life = 0;
     for (const tank of Object.values(state.tanks)) {
       if (tank.id === b.owner || tank.dead) continue;
       if (Math.hypot(tank.x - b.x, tank.y - b.y) < TANK_R + BULLET_R) {
         b.life = 0;
-        tank.hp -= 1;
-        if (tank.hp <= 0) {
-          tank.dead = true;
-          tank.respawnAt = performance.now() + 1300;
-          state.tanks[b.owner].score += 1;
-          winnerText = `${b.owner.toUpperCase()} scores`;
-          winnerUntil = performance.now() + 900;
-        }
+        killTank(tank, b.owner, `${b.owner.toUpperCase()} scores`);
       }
     }
   }
   state.bullets = state.bullets.filter((b) => b.life > 0);
 }
 
-function respawn(now) {
-  for (const tank of Object.values(state.tanks)) {
-    if (tank.dead && now >= tank.respawnAt) {
-      const left = tank.id === "p1";
-      Object.assign(tank, {
-        x: left ? 104 : W - 104,
-        y: H / 2,
-        a: left ? 0 : Math.PI,
-        hp: 5,
-        dead: false,
-      });
-    }
+function advanceStageIfReady(now) {
+  if (state.roundOverUntil && now >= state.roundOverUntil) {
+    startStage(state.nextStage);
   }
 }
 
@@ -309,6 +433,11 @@ function applyRemoteState(next) {
   if (!next) return;
   state.tanks = next.tanks || state.tanks;
   state.bullets = next.bullets || [];
+  state.stage = next.stage || state.stage;
+  state.nextStage = next.nextStage || state.nextStage;
+  state.roundOverUntil = next.roundOverUntil || 0;
+  state.walls = next.walls || state.walls;
+  state.mines = next.mines || state.mines;
 }
 
 function sendNetwork(now) {
@@ -325,6 +454,12 @@ function update(dt, now) {
     input.fire = false;
     return;
   }
+  advanceStageIfReady(now);
+  if (state.roundOverUntil) {
+    sendNetwork(now);
+    input.fire = false;
+    return;
+  }
   const p1Move = input;
   const p2Move = netRole === "host" && conn?.open ? remoteInput : aiInput(state.tanks.p2, state.tanks.p1);
   moveTank(state.tanks.p1, p1Move, dt);
@@ -332,7 +467,6 @@ function update(dt, now) {
   if (p1Move.fire) fire(state.tanks.p1, now);
   if (p2Move.fire) fire(state.tanks.p2, now);
   updateBullets(dt);
-  respawn(now);
   sendNetwork(now);
   input.fire = false;
 }
@@ -340,6 +474,7 @@ function update(dt, now) {
 function draw() {
   ctx.clearRect(0, 0, W, H);
   drawArena();
+  for (const mine of state.mines) drawMine(mine);
   for (const tank of Object.values(state.tanks)) drawTank(tank);
   for (const b of state.bullets) drawBullet(b);
   drawScores();
@@ -355,7 +490,7 @@ function drawArena() {
   ctx.lineWidth = 4;
   ctx.strokeRect(ARENA.x, ARENA.y, ARENA.w, ARENA.h);
   ctx.fillStyle = "#5b4934";
-  for (const w of walls) {
+  for (const w of state.walls) {
     ctx.fillRect(w.x, w.y, w.w, w.h);
     ctx.strokeStyle = "#8b7559";
     ctx.strokeRect(w.x + 3, w.y + 3, w.w - 6, w.h - 6);
@@ -391,11 +526,29 @@ function drawTank(t) {
   ctx.globalAlpha = .35;
   ctx.fillRect(-10, -9, 9, 18);
   ctx.restore();
-  ctx.globalAlpha = 1;
+}
+
+function drawMine(mine) {
+  if (!mine.active) return;
+  ctx.save();
+  ctx.translate(mine.x, mine.y);
   ctx.fillStyle = "#101317";
-  ctx.fillRect(t.x - 23, t.y - 31, 46, 6);
-  ctx.fillStyle = t.color;
-  ctx.fillRect(t.x - 23, t.y - 31, 46 * (t.hp / 5), 6);
+  ctx.beginPath();
+  ctx.arc(0, 0, MINE_R, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.strokeStyle = "#ff6b5f";
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  ctx.strokeStyle = "#f5c542";
+  ctx.lineWidth = 2;
+  for (let i = 0; i < 8; i++) {
+    const a = (Math.PI * 2 * i) / 8;
+    ctx.beginPath();
+    ctx.moveTo(Math.cos(a) * 8, Math.sin(a) * 8);
+    ctx.lineTo(Math.cos(a) * 18, Math.sin(a) * 18);
+    ctx.stroke();
+  }
+  ctx.restore();
 }
 
 function drawBullet(b) {
@@ -407,11 +560,11 @@ function drawBullet(b) {
 
 function drawScores() {
   ctx.fillStyle = "rgba(0,0,0,.35)";
-  ctx.fillRect(W / 2 - 112, 12, 224, 42);
+  ctx.fillRect(W / 2 - 168, 12, 336, 42);
   ctx.fillStyle = "#fff";
-  ctx.font = "700 24px system-ui";
+  ctx.font = "800 18px system-ui";
   ctx.textAlign = "center";
-  ctx.fillText(`${state.tanks.p1.score}  :  ${state.tanks.p2.score}`, W / 2, 41);
+  ctx.fillText(`STAGE ${state.stage}   ${state.tanks.p1.score} : ${state.tanks.p2.score}`, W / 2, 40);
 }
 
 function drawCenterText(text) {
@@ -424,6 +577,8 @@ function drawCenterText(text) {
 }
 
 let last = performance.now();
+startStage(1, false);
+
 function loop(now) {
   const dt = Math.min(0.033, (now - last) / 1000);
   last = now;
