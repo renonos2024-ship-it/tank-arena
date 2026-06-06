@@ -58,7 +58,7 @@ function setStatus(text) {
 }
 
 function roomId() {
-  return "ta-" + Math.random().toString(36).slice(2, 7).toUpperCase();
+  return "TA-" + Math.random().toString(36).slice(2, 7).toUpperCase();
 }
 
 function setupPeerEvents(connection) {
