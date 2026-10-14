@@ -55,7 +55,7 @@ const types=[
 {name:'琉金',value:8,speed:.85,mass:1.6,scale:1.1,color:'#e9af42',weight:9},
 {name:'丹頂',value:12,speed:1.05,mass:1.8,scale:1.08,color:'#f0e9ce',weight:6},
 {name:'月光金魚',value:20,speed:1.28,mass:2.1,scale:1.2,color:'#b5baf6',weight:3.5},
-{name:'錦鯉',value:35,speed:1.45,mass:2.7,scale:1.36,color:'#e9cb7e',weight:1.4},
+{name:'錦鯉',value:35,speed:1.45,mass:2.7,scale:1.36,color:'#e9cb7e',weight:1.4,species:'koi'},
 {name:'幻の星魚',value:50,speed:1.65,mass:3.2,scale:1.42,color:'#c5e9fd',weight:.35},
 {name:'メダカ',value:1,speed:1.5,mass:.48,scale:.60,color:'#c7cba0',weight:18,species:'medaka'},
 {name:'グッピー',value:3,speed:1.43,mass:.66,scale:.80,color:'#63d9c5',weight:14,species:'guppy'},
@@ -88,7 +88,7 @@ function status(t){$('status').textContent=t}
 function popup(a,b,time=1050){$('flashTitle').textContent=a;$('flashSub').textContent=b;$('flash').classList.add('on');clearTimeout(flashTimer);flashTimer=setTimeout(()=>$('flash').classList.remove('on'),time)}
 function floater(message,x,y,z){const p=screen([x,y,z]);if(!p)return;const n=document.createElement('div');n.className='float';n.style.left=p.x+'px';n.style.top=p.y+'px';n.textContent=message;arena.appendChild(n);setTimeout(()=>n.remove(),980)}
 function weightedType(){const available=types.map(t=>{let w=t.weight;const st=stages[stage];if(t.value>=12)w*=st.rare;if(st.mode==='heavy'&&t.mass>=1.6)w*=2.2;if(feverLeft>0&&t.value>=8)w*=1.7;return w});const sum=available.reduce((a,b)=>a+b,0);let r=Math.random()*sum;for(let i=0;i<types.length;i++){r-=available[i];if(r<=0)return types[i]}return types[0]}
-function createFish(i){let t=(i<8&&fishes.length===0)?types[[9,10,11,12,13,14,15,16][i]]:weightedType(),a=rand(0,6.283),x=rand(-3.2,3.2),z=rand(-2.1,2.1);return {id:i,type:t,x,z,vx:Math.cos(a)*t.speed*.50,vz:Math.sin(a)*t.speed*.50,phase:rand(0,6.283),wander:rand(0,6.283),cooldown:0,hooked:false,tag:null}}
+function createFish(i){let t=(i<8&&fishes.length===i)?types[[9,10,11,12,13,14,15,16][i]]:weightedType(),a=rand(0,6.283),x=rand(-3.2,3.2),z=rand(-2.1,2.1);return {id:i,type:t,x,z,vx:Math.cos(a)*t.speed*.50,vz:Math.sin(a)*t.speed*.50,phase:rand(0,6.283),wander:rand(0,6.283),cooldown:0,hooked:false,tag:null}}
 function fishSVG(type){
  const k=type.species||'goldfish',c=type.color;
  const puff=k==='puffer',angel=k==='angel',loach=k==='loach',guppy=k==='guppy'||k==='betta',tetra=k==='tetra',koi=k==='koi',clown=k==='clown',medaka=k==='medaka',blue=k==='bluegill';
@@ -205,7 +205,16 @@ function drawPool(){const st=stages[stage];gl.clearColor(...rgb('#0d2237'),1);gl
 function fishModel(f,now){if(f.hooked&&(!lift||lift.t>=.78))return;let x=f.x,z=f.z,y=.19+Math.sin(now*.002+f.phase)*.038;let facing=-Math.atan2(f.vz,f.vx);
  if(lift?.fish===f&&lift.success){x=lift.px;z=lift.pz;y=.27+lift.rise}
  let root=addTransform(M.I(),{p:[x,y,z],s:[f.type.scale,f.type.scale,f.type.scale],ry:facing,rz:Math.sin(now*.004+f.phase)*.025});const base=f.type.color,tailAngle=Math.sin(now*.009+f.phase)*.35;
- draw('sphere',base,{s:[.55,.22,.25],p:[0,0,0]},root,.62);
+ const k=f.type.species||'goldfish';
+ const dimensions=k==='puffer'?[.38,.36,.38]:k==='loach'?[.75,.12,.16]:k==='angel'?[.40,.45,.24]:k==='medaka'?[.62,.13,.17]:[.55,.22,.25];
+ draw('sphere',base,{s:dimensions,p:[0,0,0]},root,.62);
+ if(k==='clown')for(let sx of [-.19,.11,.34])draw('box','#fff5df',{p:[sx,0,.20],s:[.06,.34,.10]},root,.69);
+ if(k==='tetra'){draw('box','#77f7fe',{p:[-.04,.10,.14],s:[.70,.06,.13]},root,.92);draw('box','#f26b76',{p:[0,-.09,.15],s:[.57,.055,.12]},root,.82);}
+ if(k==='koi')for(let sx of [-.19,.23])draw('sphere',sx<0?'#d76954':'#474344',{p:[sx,.14,.17],s:[.16,.09,.09]},root,.68);
+ if(k==='puffer')for(let dx of [-.22,0,.22]){draw('cone','#e5e8b1',{p:[dx,.37,.04],s:[.055,.10,.055]},root,.65);}
+ if(k==='angel'){draw('cone',base,{p:[-.18,.34,0],s:[.25,.47,.12]},root,.7);draw('cone',base,{p:[-.12,-.32,0],s:[.24,.42,.11],rx:Math.PI},root,.7);}
+ if(k==='guppy'||k==='betta'){draw('cone',base,{p:[-.72,0,0],s:[.49,.37,.38],ry:Math.PI/2},root,.72);}
+
  draw('sphere',base,{s:[.26,.22,.24],p:[.33,.015,0]},root,.65);
  for(let side of [-1,1]){draw('sphere','#222e43',{p:[.41,.10,side*.20],s:[.055,.06,.036]},root,.78);draw('sphere','#fff6de',{p:[.423,.123,side*.227],s:[.017,.021,.012]},root,.9)}
  draw('cone',base,{p:[-.57,0,0],s:[.39,.20,.26],rz:Math.PI/2,ry:tailAngle},root,.5);
