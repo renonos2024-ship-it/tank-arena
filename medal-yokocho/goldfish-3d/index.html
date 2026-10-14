@@ -1,26 +1,28 @@
-<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#0e1a29"><title>宵まちメダル横丁｜3D金魚すくい v0.4｜真上視点</title>
+<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#0e1a29"><title>宵まちメダル横丁｜3D金魚すくい v0.5｜広い水槽・一枚ポイ・自動補充</title>
 <style>
-:root{--gold:#f2d195;--aqua:#9de8da;--ink:#f5f2e8;--muted:#acc1d2}*{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at top,#23384b,#0a1425 72%);color:var(--ink);font-family:system-ui,-apple-system,'Hiragino Kaku Gothic ProN',sans-serif}button{font:inherit;cursor:pointer;touch-action:manipulation}.wrap{max-width:970px;margin:auto;padding:12px 12px 32px}.head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.logo{width:45px;height:45px;background:linear-gradient(155deg,#ffe0a2,#db825f);border-radius:14px;display:grid;place-items:center;font-size:27px;box-shadow:0 5px 18px #0005}.head h1{font-size:19px;margin:0}.gameNav{display:flex;gap:8px;margin:0 0 10px}.gameNav a{flex:1;display:block;text-decoration:none;text-align:center;padding:9px 10px;border:1px solid #5d8695;background:#1c344a;border-radius:10px;color:#d8eef1;font-size:12px;font-weight:750}.gameNav a.active{background:#346978;color:#fff2c7;border-color:#b6d6d5}.eyebrow{font-size:10px;color:#a8bdcc;letter-spacing:.12em}.coins{margin-left:auto;text-align:right}.coins small{display:block;font-size:10px;color:#b9d4df}.coins b{font-size:25px;color:#ffe2a3;font-variant-numeric:tabular-nums}.arena{position:relative;isolation:isolate;border-radius:21px;overflow:hidden;border:3px solid #b48b58;background:radial-gradient(ellipse,#266878,#112b43);box-shadow:0 16px 32px #02091288,inset 0 0 35px #66acba44;height:min(73svh,690px);min-height:460px}.arena:before{content:"";position:absolute;left:0;right:0;top:0;height:12px;background:repeating-linear-gradient(90deg,#c65656 0 44px,#f3e1bf 44px 88px);z-index:4;pointer-events:none}.arena::after{content:"";position:absolute;inset:12px 0 0;box-shadow:inset 0 0 55px #081b32aa;pointer-events:none;z-index:2}#scene{width:100%;height:100%;display:block;touch-action:none;user-select:none}.hud{position:absolute;top:21px;left:10px;right:10px;z-index:5;display:flex;gap:7px;justify-content:space-between;align-items:start;pointer-events:none}.pill{border:1px solid #7a97a088;border-radius:12px;background:#0b273ad9;backdrop-filter:blur(8px);padding:7px 9px;max-width:45%;font-size:11px;color:#bed9dc}.pill strong{display:block;color:#ffe5af;font-size:14px}.pill.timer{min-width:85px;text-align:center}.time{font-size:24px;font-weight:950;color:#fff3d1}.pond-glow{pointer-events:none;position:absolute;inset:70px 12px 55px;z-index:1;border-radius:50%;background:radial-gradient(ellipse at center,transparent 32%,#95ebff0b 65%,transparent 75%)}.poi-label{position:absolute;z-index:8;transform:translate(-50%,-50%);pointer-events:none;background:#0c293cae;color:#ffebae;border:1px solid #b6cdbe85;border-radius:10px;font-weight:850;padding:1px 3px;font-size:9px;line-height:1.1;white-space:nowrap;box-shadow:0 1px 3px #0019;opacity:.88}.poi-label.rare{background:#2c407dc7;border-color:#92c7ff;font-size:10px;color:#fff2ce}.poi-label.off{display:none}
+:root{--gold:#f2d195;--aqua:#9de8da;--ink:#f5f2e8;--muted:#acc1d2}*{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at top,#23384b,#0a1425 72%);color:var(--ink);font-family:system-ui,-apple-system,'Hiragino Kaku Gothic ProN',sans-serif}button{font:inherit;cursor:pointer;touch-action:manipulation}.wrap{max-width:970px;margin:auto;padding:12px 12px 32px}.head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.logo{width:45px;height:45px;background:linear-gradient(155deg,#ffe0a2,#db825f);border-radius:14px;display:grid;place-items:center;font-size:27px;box-shadow:0 5px 18px #0005}.head h1{font-size:19px;margin:0}.gameNav{display:flex;gap:8px;margin:0 0 10px}.gameNav a{flex:1;display:block;text-decoration:none;text-align:center;padding:9px 10px;border:1px solid #5d8695;background:#1c344a;border-radius:10px;color:#d8eef1;font-size:12px;font-weight:750}.gameNav a.active{background:#346978;color:#fff2c7;border-color:#b6d6d5}.eyebrow{font-size:10px;color:#a8bdcc;letter-spacing:.12em}.coins{margin-left:auto;text-align:right}.coins small{display:block;font-size:10px;color:#b9d4df}.coins b{font-size:25px;color:#ffe2a3;font-variant-numeric:tabular-nums}.arena{position:relative;isolation:isolate;border-radius:21px;overflow:hidden;border:3px solid #b48b58;background:radial-gradient(ellipse,#266878,#112b43);box-shadow:0 16px 32px #02091288,inset 0 0 35px #66acba44;height:min(79svh,760px);min-height:490px}.arena:before{content:"";position:absolute;left:0;right:0;top:0;height:12px;background:repeating-linear-gradient(90deg,#c65656 0 44px,#f3e1bf 44px 88px);z-index:4;pointer-events:none}.arena::after{content:"";position:absolute;inset:12px 0 0;box-shadow:inset 0 0 55px #081b32aa;pointer-events:none;z-index:2}#scene{width:100%;height:100%;display:block;touch-action:none;user-select:none}.hud{position:absolute;top:21px;left:10px;right:10px;z-index:5;display:flex;gap:7px;justify-content:space-between;align-items:start;pointer-events:none}.pill{border:1px solid #7a97a088;border-radius:12px;background:#0b273ad9;backdrop-filter:blur(8px);padding:7px 9px;max-width:45%;font-size:11px;color:#bed9dc}.pill strong{display:block;color:#ffe5af;font-size:14px}.pill.timer{min-width:85px;text-align:center}.time{font-size:24px;font-weight:950;color:#fff3d1}.pond-glow{pointer-events:none;position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at center,transparent 48%,#95ebff06 92%,transparent)}.poi-label{position:absolute;z-index:8;transform:translate(-50%,-50%);pointer-events:none;background:#0c293cae;color:#ffebae;border:1px solid #b6cdbe85;border-radius:10px;font-weight:850;padding:1px 3px;font-size:9px;line-height:1.1;white-space:nowrap;box-shadow:0 1px 3px #0019;opacity:.88}.poi-label.rare{background:#2c407dc7;border-color:#92c7ff;font-size:10px;color:#fff2ce}.poi-label.off{display:none}
 .poi-label.boss-tag{background:#542f54;color:#fff0ae;border:1px solid #ffe498;font-weight:900;box-shadow:0 0 9px #ffe6aa88}
 .fish-sprite.boss-fish{filter:drop-shadow(0 0 7px #ffe091) drop-shadow(0 4px 3px #071b31)}
 
 .fish-sprite{position:absolute;z-index:6;width:70px;height:52px;transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 2px 3px #03232a88);will-change:left,top}
 .fish-sprite svg{width:100%;height:100%;overflow:visible}
 .fish-sprite.off{display:none}
-.poi-visual{position:absolute;z-index:9;width:92px;height:92px;transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 4px 4px #0b1a29b3);will-change:left,top}
+.poi-visual{position:absolute;z-index:12;width:94px;height:94px;transform:translate(-50%,-50%);pointer-events:none;filter:drop-shadow(0 1px 3px #081a29b8);will-change:left,top;transition:filter .12s}
+.poi-visual.lifting{filter:drop-shadow(0 0 8px #fff0a2)}
+.poi-visual.broken{opacity:.35}
 .poi-visual svg{width:100%;height:100%;overflow:visible}
 .poi-visual.off{display:none}
-@media(max-width:600px){.fish-sprite{width:60px;height:46px}.poi-visual{width:82px;height:82px}}.tip{position:absolute;left:9px;right:9px;bottom:12px;z-index:5;pointer-events:none;text-align:center}.tip span{background:#0b2739d9;border:1px solid #5c8a91bb;border-radius:9px;padding:7px 10px;color:#e1f7ee;font-size:11px;display:inline-block}.flash{position:absolute;z-index:12;left:50%;top:35%;transform:translate(-50%,-50%);border:2px solid #fff0bf;border-radius:15px;padding:10px 17px;background:#102c42ee;text-align:center;min-width:220px;opacity:0;transition:opacity .25s;pointer-events:none;box-shadow:0 10px 30px #0009}.flash.on{opacity:1}.flash b{font-size:22px;color:#ffdf94}.flash small{font-size:11px;color:#b8e9e8}.float{position:absolute;z-index:10;pointer-events:none;transform:translate(-50%,-50%);font-size:21px;font-weight:950;text-shadow:0 2px 5px #101e29,0 0 8px #183c48;color:#fdf6d0;white-space:nowrap;animation:floaty .9s forwards}@keyframes floaty{0%{opacity:0;translate:0 15px;scale:.7}15%{opacity:1}100%{opacity:0;translate:0 -70px;scale:1.15}}.stage-tools{margin-top:9px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#172b3edc;border:1px solid #527386;border-radius:12px;padding:8px;color:#e8f2dd;font-size:12px}
+@media(max-width:600px){.fish-sprite{width:60px;height:46px}.poi-visual{width:92px;height:92px}}.tip{position:absolute;left:9px;right:9px;bottom:12px;z-index:5;pointer-events:none;text-align:center}.tip span{background:#0b2739d9;border:1px solid #5c8a91bb;border-radius:9px;padding:7px 10px;color:#e1f7ee;font-size:11px;display:inline-block}.flash{position:absolute;z-index:12;left:50%;top:35%;transform:translate(-50%,-50%);border:2px solid #fff0bf;border-radius:15px;padding:10px 17px;background:#102c42ee;text-align:center;min-width:220px;opacity:0;transition:opacity .25s;pointer-events:none;box-shadow:0 10px 30px #0009}.flash.on{opacity:1}.flash b{font-size:22px;color:#ffdf94}.flash small{font-size:11px;color:#b8e9e8}.float{position:absolute;z-index:10;pointer-events:none;transform:translate(-50%,-50%);font-size:21px;font-weight:950;text-shadow:0 2px 5px #101e29,0 0 8px #183c48;color:#fdf6d0;white-space:nowrap;animation:floaty .9s forwards}@keyframes floaty{0%{opacity:0;translate:0 15px;scale:.7}15%{opacity:1}100%{opacity:0;translate:0 -70px;scale:1.15}}.stage-tools{margin-top:9px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:#172b3edc;border:1px solid #527386;border-radius:12px;padding:8px;color:#e8f2dd;font-size:12px}
 .stage-tools select,.stage-tools button{border:1px solid #6e9aa4;border-radius:9px;padding:9px;background:#25465c;color:#fff1d7;font-size:12px;touch-action:manipulation}
 .stage-tools select{flex:1;min-width:140px;max-width:370px}
 .boss-hint{font-size:11px;color:#f5d28a;font-weight:800}
 .scoop-controls{display:grid;grid-template-columns:1fr 190px;gap:10px;margin-top:11px}.pan{background:linear-gradient(150deg,#1a3448,#14253a);border:1px solid #4b7082;border-radius:15px;padding:11px}.section{color:#bedadf;font-size:11px;font-weight:800;letter-spacing:.04em;margin-bottom:8px}.gear{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.gear button{border:1px solid #698692;border-radius:11px;color:#e6f5ee;background:#25445a;min-height:70px;padding:8px 3px}.gear button b,.gear button small{display:block}.gear button b{font-size:13px}.gear button small{font-size:10px;color:#bfd6db}.gear button.current{border:2px solid #ffe3a4;background:linear-gradient(150deg,#796342,#5a534e)}.dur{height:10px;background:#12263a;border-radius:30px;overflow:hidden;border:1px solid #4b6f78;margin-top:10px}.dur i{display:block;height:100%;width:100%;background:linear-gradient(90deg,#eab968,#9fe8c7);transition:width .2s}.dur-label{font-size:11px;color:#adccd4;margin-top:4px;display:flex;justify-content:space-between}.scoop{border:0;border-radius:16px;width:100%;min-height:116px;background:linear-gradient(#ffe2a3,#f2a96a);color:#3e3022;font-weight:1000;font-size:21px;box-shadow:inset 0 1px #fff8,0 5px 0 #925a45}.scoop:active{transform:translateY(3px);box-shadow:inset 0 1px #fff8,0 2px 0 #925a45}.scoop:disabled{opacity:.55}.rightcol{display:flex;flex-direction:column;gap:10px}.extras{display:flex;gap:7px}.extras button{border-radius:9px;border:1px solid #58788b;background:#29475d;color:#e7f3f0;padding:8px 5px;font-size:11px;flex:1}.stats{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}.stats div{flex:1;border:1px solid #466b7e;background:#142b3d;border-radius:10px;padding:9px;color:#d7e8e9;font-size:11px;min-width:85px}.stats strong{display:block;font-size:17px;color:#ffdfa0}.status{font-size:13px;color:#c3f5e7;margin-top:12px;min-height:36px}.foot{font-size:10px;color:#829daf;line-height:1.5}.start-overlay{position:absolute;inset:0;z-index:20;background:linear-gradient(145deg,#102136f2,#214859e9);display:flex;justify-content:center;align-items:center;padding:19px}.start-overlay.hidden{display:none}.start-card{border:1px solid #b0b19a;border-radius:21px;background:#102e42eb;box-shadow:0 12px 40px #0016;padding:24px 21px;text-align:center;max-width:390px}.start-card h2{font-size:27px;margin:0 0 10px;color:#ffe4ac}.start-card p{font-size:13px;line-height:1.85;color:#c7e2de}.start-card button{background:linear-gradient(#ffe4a4,#e3a46a);border:0;border-radius:12px;padding:13px 35px;font-weight:900;font-size:17px;color:#463224}.error{display:none;z-index:25;position:absolute;inset:15%;border-radius:14px;background:#5c2434;color:white;padding:15px}
-@media(max-width:600px){.wrap{padding:8px 7px 24px}.logo{width:38px;height:38px;font-size:21px}.head h1{font-size:16px}.eyebrow{font-size:9px}.coins b{font-size:21px}.arena{height:69svh;min-height:440px;max-height:700px;border-width:2px}.pill{padding:6px 7px;font-size:9px}.pill strong{font-size:11px}.time{font-size:21px}.scoop-controls{grid-template-columns:1fr 117px;gap:7px}.pan{padding:8px}.gear{gap:4px}.gear button{padding:6px 2px;min-height:65px}.gear button b{font-size:11px}.gear button small{font-size:9px}.section{font-size:10px}.scoop{min-height:100px;font-size:18px}.extras button{padding:7px 2px;font-size:10px}.tip span{font-size:10px}.poi-label{font-size:8px;padding:1px 3px}.status{font-size:12px}}
-</style></head><body><main class="wrap"><header class="head"><div class="logo">🐟</div><div><div class="eyebrow">YOIMACHI MEDAL YOKOCHO · WEBGL v0.4 · TOP-DOWN POND</div><h1>宵まち金魚すくい ― 水面の夜店</h1></div><div class="coins"><small>手持ちメダル</small><b id="coins">120</b></div></header><nav class="gameNav"><a href="../arcade-3d/index.html">🏮 メダル横丁</a><a href="../shooting-3d/index.html">🎯 3D射的</a><a href="./index.html" class="active">🐟 金魚すくい</a></nav>
-<section class="arena" id="arena"><canvas id="scene"></canvas><div class="pond-glow"></div><div class="hud"><div class="pill"><strong id="stageLabel">第1幕・夜店の池</strong><span id="stageDesc">基本の金魚池</span></div><div class="pill timer"><div id="timer" class="time">0:30</div><small>次のステージまで</small></div><div class="pill" style="text-align:right"><strong>獲得 <span id="earned">0</span> 枚</strong><span>連続成功 <span id="combo">0</span></span></div></div><div id="flash" class="flash"><b id="flashTitle">大成功！</b><small id="flashSub">魚をすくった！</small></div><div class="tip"><span>真上から見て狙う！ 1本指でポイ、2本指で水槽を移動・拡大</span></div><div id="overlay" class="start-overlay"><div class="start-card"><div style="font-size:46px">🐟 🫧 🌙</div><h2>水面の夜店</h2><p>射的と同じ操作。<br><b>好きな場所から指を動かすと、ポイがその分だけ移動します。</b><br>魚の下へ移動して、別の指で「すくう！」を押そう。<br>ポイの耐久と魚の重さで勝負が決まります。</p><button id="start">▶ プレイ開始</button><div style="font-size:11px;color:#a2c8ca;margin-top:10px">真上から見下ろす水槽。30秒ごとに水流や魚の動きが変化</div></div></div><div id="error" class="error"></div></section>
+@media(max-width:600px){.wrap{padding:8px 7px 24px}.logo{width:38px;height:38px;font-size:21px}.head h1{font-size:16px}.eyebrow{font-size:9px}.coins b{font-size:21px}.arena{height:76svh;min-height:480px;max-height:790px;border-width:2px}.pill{padding:6px 7px;font-size:9px}.pill strong{font-size:11px}.time{font-size:21px}.scoop-controls{grid-template-columns:1fr 117px;gap:7px}.pan{padding:8px}.gear{gap:4px}.gear button{padding:6px 2px;min-height:65px}.gear button b{font-size:11px}.gear button small{font-size:9px}.section{font-size:10px}.scoop{min-height:100px;font-size:18px}.extras button{padding:7px 2px;font-size:10px}.tip span{font-size:10px}.poi-label{font-size:8px;padding:1px 3px}.status{font-size:12px}}
+</style></head><body><main class="wrap"><header class="head"><div class="logo">🐟</div><div><div class="eyebrow">YOIMACHI MEDAL YOKOCHO · WEBGL v0.5 · EXPLORE / SINGLE POI</div><h1>宵まち金魚すくい ― 水面の夜店</h1></div><div class="coins"><small>手持ちメダル</small><b id="coins">120</b></div></header><nav class="gameNav"><a href="../arcade-3d/index.html">🏮 メダル横丁</a><a href="../shooting-3d/index.html">🎯 3D射的</a><a href="./index.html" class="active">🐟 金魚すくい</a></nav>
+<section class="arena" id="arena"><canvas id="scene"></canvas><div class="pond-glow"></div><div class="hud"><div class="pill"><strong id="stageLabel">第1幕・夜店の池</strong><span id="stageDesc">基本の金魚池</span></div><div class="pill timer"><div id="timer" class="time">0:30</div><small>次のステージまで</small></div><div class="pill" style="text-align:right"><strong>獲得 <span id="earned">0</span> 枚</strong><span>連続成功 <span id="combo">0</span></span></div></div><div id="flash" class="flash"><b id="flashTitle">大成功！</b><small id="flashSub">魚をすくった！</small></div><div class="tip"><span>1本指でポイ移動／2本指で探索・拡大。水槽全体は表示しません</span></div><div id="overlay" class="start-overlay"><div class="start-card"><div style="font-size:46px">🐟 🫧 🌙</div><h2>水面の夜店</h2><p>射的と同じ操作。<br><b>好きな場所から指を動かすと、ポイがその分だけ移動します。</b><br>魚の下へ移動して、別の指で「すくう！」を押そう。<br>ポイの耐久と魚の重さで勝負が決まります。</p><button id="start">▶ プレイ開始</button><div style="font-size:11px;color:#a2c8ca;margin-top:10px">真上から見下ろす水槽。30秒ごとに水流や魚の動きが変化</div></div></div><div id="error" class="error"></div></section>
 <div class="stage-tools"><span>🌊 ステージ</span><select id="stageSelect" aria-label="ステージ選択"></select><button id="stageNextBtn">次の水槽 →</button><button id="viewReset" type="button">◎ 全体表示</button><span class="boss-hint" id="bossHint">ヌシ出現待ち</span></div>
 <div class="scoop-controls"><section class="pan"><div class="section">ポイを選択（1クレジット＝メダル1枚）</div><div class="gear"><button data-gear="1" class="current"><b>🟡 1枚</b><small>紙ポイ</small></button><button data-gear="3"><b>🔵 3枚</b><small>丈夫なポイ</small></button><button data-gear="5"><b>🟣 5枚</b><small>金縁ポイ</small></button></div><div class="dur"><i id="durFill"></i></div><div class="dur-label"><span id="durText">ポイの耐久：100%</span><span id="poiName">紙ポイ</span></div></section><div class="rightcol"><button class="scoop" id="scoop">🐟 すくう！</button><div class="extras"><button id="sound">🔊 BGM</button><button id="refill">＋30枚</button></div></div></div>
-<div class="stats"><div>今回の獲得<strong id="session">0 枚</strong></div><div>連続捕獲<strong id="streak">0 回</strong></div><div>金魚図鑑<strong id="collection">0 種</strong></div><div>祭りゲージ<strong id="fever">0 / 5</strong></div></div><div class="status" id="status">上から魚を見て、白い輪を1本指で移動。「すくう！」で捕獲、2本指で水槽移動。</div><p class="foot">オリジナル3D試作版・課金／換金なし。魚の移動・ポイの耐久・捕獲判定は実際のゲームロジックで動作します。音は「プレイ開始」後に再生されます。</p></main>
+<div class="stats"><div>今回の獲得<strong id="session">0 枚</strong></div><div>連続捕獲<strong id="streak">0 回</strong></div><div>金魚図鑑<strong id="collection">0 種</strong></div><div>祭りゲージ<strong id="fever">0 / 5</strong></div></div><div class="status" id="status">広い水槽を探索しながら、白いポイ1枚を操作。すくうボタンで捕獲、破れても自動交換。</div><p class="foot">オリジナル3D試作版・課金／換金なし。魚の移動・ポイの耐久・捕獲判定は実際のゲームロジックで動作します。音は「プレイ開始」後に再生されます。</p></main>
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),canvas=$('scene'),arena=$('arena'),overlay=$('overlay');
@@ -46,12 +48,12 @@ for(let i=0;i<major;i++)for(let j=0;j<minor;j++){let a=point(i,j),b=point(i+1,j)
 
 const meshes={box:boxMesh(),sphere:sphereMesh(),cyl:cylMesh(),cone:coneMesh(),torus:torusMesh()};gl.enable(gl.DEPTH_TEST);gl.enable(gl.CULL_FACE);gl.cullFace(gl.BACK);
 
-let VP,V,projection,aspect=1,cam=[0,9.4,11.3],target=[0,-.14,0],fwd,right,up,viewPan={x:0,z:0},viewZoom=1;
+let VP,V,projection,aspect=1,cam=[0,9.4,11.3],target=[0,-.14,0],fwd,right,up,viewPan={x:0,z:0},viewZoom=.70;
 const FOV=49*Math.PI/180,rand=(a,b)=>a+Math.random()*(b-a),choose=x=>x[Math.floor(Math.random()*x.length)];
 function updateCamera(){
  // True overhead view. Orient the basin's long axis vertically on an iPhone.
  // Fit the full pond at 1x without hiding the outside edge of the water.
- const halfLong=6.08,halfShort=4.64;
+ const halfLong=8.85,halfShort=6.62;
  const fitDistance=Math.max(halfLong,halfShort/Math.max(.25,aspect))
    /Math.tan(FOV/2)*1.10;
  target=[viewPan.x,-.14,viewPan.z];
@@ -147,7 +149,7 @@ function status(t){$('status').textContent=t}
 function popup(a,b,time=1050){$('flashTitle').textContent=a;$('flashSub').textContent=b;$('flash').classList.add('on');clearTimeout(flashTimer);flashTimer=setTimeout(()=>$('flash').classList.remove('on'),time)}
 function floater(message,x,y,z){const p=screen([x,y,z]);if(!p)return;const n=document.createElement('div');n.className='float';n.style.left=p.x+'px';n.style.top=p.y+'px';n.textContent=message;arena.appendChild(n);setTimeout(()=>n.remove(),980)}
 function weightedType(){const available=types.map(t=>{let w=t.weight;const st=stages[stage];if(t.value>=12)w*=st.rare;if(st.mode==='heavy'&&t.mass>=1.6)w*=2.2;if(feverLeft>0&&t.value>=8)w*=1.7;return w});const sum=available.reduce((a,b)=>a+b,0);let r=Math.random()*sum;for(let i=0;i<types.length;i++){r-=available[i];if(r<=0)return types[i]}return types[0]}
-function createFish(i,forcedType=null){let t=forcedType||((i<8&&fishes.length===i)?types[[9,10,11,12,13,14,15,16][i]]:weightedType()),a=rand(0,6.283),x=rand(-4.1,4.1),z=rand(-2.8,2.8);return {id:i,type:t,x,z,vx:Math.cos(a)*t.speed*.50,vz:Math.sin(a)*t.speed*.50,phase:rand(0,6.283),wander:rand(0,6.283),cooldown:0,hooked:false,tag:null}}
+function createFish(i,forcedType=null){let t=forcedType||((i<8&&fishes.length===i)?types[[9,10,11,12,13,14,15,16][i]]:weightedType()),a=rand(0,6.283),x=rand(-6.7,6.7),z=rand(-5.0,5.0);return {id:i,type:t,x,z,vx:Math.cos(a)*t.speed*.50,vz:Math.sin(a)*t.speed*.50,phase:rand(0,6.283),wander:rand(0,6.283),cooldown:0,hooked:false,tag:null}}
 function fishSVG(type){
  const k=type.species||'goldfish',c=type.color;
  const puff=k==='puffer',angel=k==='angel',loach=k==='loach',guppy=k==='guppy'||k==='betta',tetra=k==='tetra',koi=k==='koi',clown=k==='clown',medaka=k==='medaka',blue=k==='bluegill';
@@ -182,7 +184,23 @@ function buyPoi(kind){if(!playing){netChoice=kind;document.querySelectorAll('[da
 function updateDur(){let rate=net?Math.max(0,net.dur/net.max):0;$('durFill').style.width=rate*100+'%';$('durText').textContent=net?`ポイの耐久：${Math.round(rate*100)}%`:'ポイなし';$('scoop').disabled=!playing||!net||net.broken||!!lift;$('poiName').textContent=net?poiConfigs[net.kind].name:'ポイを選択'}
 function splash(x,z,strength=1){ripple.push({x,z,t:0,duration:1.0,size:.3+.45*strength});for(let i=0;i<8;i++)particles.push({x:x+rand(-.25,.25),y:.05,z:z+rand(-.25,.25),vx:rand(-.8,.8),vy:rand(1.2,2.5),vz:rand(-.8,.8),t:0,max:rand(.32,.7)})}
 function guideMarker(){const hit=screen([netWorld[0],.55+ (lift?.rise||0),netWorld[2]]);return hit}
-function breakPoi(){if(!net)return;net.dur=0;net.broken=true;updateDur();popup('ポイが破れた！','1・3・5枚から次のポイを選択',1200);status('ポイが破れました。新しいポイを選んで再挑戦しよう。');audio.tear()}
+// Automatic replacement retains the selected 1/3/5-medal net and aim position.
+let autoPoiAt=null;
+function breakPoi(){
+ if(!net||net.broken)return;
+ net.dur=0;net.broken=true;autoPoiAt=elapsed+.7;
+ updateDur();popup('ポイが破れた！','同じポイを自動補充します',900);
+ status('ポイが破れました。同じ種類を自動で交換しています。');
+ audio.tear();
+}
+function autoRenewPoi(){
+ if(!playing||!net?.broken||lift||autoPoiAt===null||elapsed<autoPoiAt)return;
+ autoPoiAt=null;
+ const kind=netChoice;
+ if(coins<kind){coins+=30;wallet();status('メダル不足のため試作版の無料30枚を補充しました。')}
+ buyPoi(kind);
+ status('🔄 '+poiConfigs[kind].name+'を自動補充。'+kind+'枚消費しました。続けてすくえます。');
+}
 function scoop(){if(!playing||!net||net.broken||lift)return;
  const cx=netWorld[0],cz=netWorld[2];net.attempts++;
  const eligible=fishes.filter(f=>!f.hooked&&f.cooldown<=0&&Math.hypot(f.x-cx,f.z-cz)<.76+f.type.scale*.15);
@@ -267,9 +285,9 @@ canvas.addEventListener('pointermove',e=>{
   const visibleWidth=visibleHeight*aspect;
   const worldRight=-dx/r.width*visibleWidth;
   const worldUp=dy/r.height*visibleHeight;
-  viewPan.x=clamp(viewPan.x+right[0]*worldRight+up[0]*worldUp,-3.5,3.5);
-  viewPan.z=clamp(viewPan.z+right[2]*worldRight+up[2]*worldUp,-2.5,2.5);
-  if(gesture.dist>10&&next.dist>10)viewZoom=clamp(viewZoom*gesture.dist/next.dist,.62,1.90);
+  viewPan.x=clamp(viewPan.x+right[0]*worldRight+up[0]*worldUp,-5,5);
+  viewPan.z=clamp(viewPan.z+right[2]*worldRight+up[2]*worldUp,-4,4);
+  if(gesture.dist>10&&next.dist>10)viewZoom=clamp(viewZoom*gesture.dist/next.dist,.52,1.95);
   updateCamera();
  }
  gesture=next;
@@ -281,7 +299,7 @@ canvas.addEventListener('lostpointercapture',endPointer);
 // Second finger presses the separate lift button; the original pointer capture remains on canvas.
 let scoopPointerTime=-1e9;const scoopButton=$('scoop');scoopButton.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'&&e.button!==0)return;scoopPointerTime=performance.now();scoop();if(e.cancelable)e.preventDefault()});scoopButton.addEventListener('click',()=>{if(performance.now()-scoopPointerTime>650)scoop()});
 document.querySelectorAll('[data-gear]').forEach(button=>button.addEventListener('click',()=>buyPoi(Number(button.dataset.gear))));
-$('viewReset').addEventListener('click',()=>{viewPan={x:0,z:0};viewZoom=1;updateCamera();status('真上視点に戻しました。1本指でポイ、2本指で水槽を動かせます。')});
+$('viewReset').addEventListener('click',()=>{viewPan={x:0,z:0};viewZoom=1.10;updateCamera();status('水槽全体を表示。2本指で拡大すると魚を狙いやすくなります。')});
 const select=$('stageSelect');
 stages.forEach((st,i)=>{const option=document.createElement('option');option.value=String(i);option.textContent=st.name;select.appendChild(option)});
 select.value='0';
@@ -304,12 +322,12 @@ function swim(dt){const st=stages[stage],poi=netWorld;for(const f of fishes){if(
   const v=Math.hypot(f.vx,f.vz)||1;f.vx=f.vx/v*speed*.64;f.vz=f.vz/v*speed*.64;
   f.x+=f.vx*dt;f.z+=f.vz*dt;
   if(st.mode==='wave'||st.mode==='final')f.z+=Math.sin(elapsed*2.5+f.id)*dt*.18;
-  const bound=(f.x/4.98)**2+(f.z/3.55)**2;
-  if(bound>1){f.x*=.979;f.z*=.979;const out=norm([f.x/4.98,f.z/3.55]);f.vx-=out[0]*speed*1.25;f.vz-=out[1]*speed*1.25}
+  const bound=(f.x/7.86)**2+(f.z/5.92)**2;
+  if(bound>1){f.x*=.979;f.z*=.979;const out=norm([f.x/7.86,f.z/5.92]);f.vx-=out[0]*speed*1.25;f.vz-=out[1]*speed*1.25}
 }}
-function update(dt){if(!playing)return;elapsed+=dt;timeLeft-=dt;timeDirty+=dt;tryBoss();if(timeLeft<=0)stageNext();if(timeDirty>.1){$('timer').textContent='0:'+String(Math.max(0,Math.ceil(timeLeft))).padStart(2,'0');timeDirty=0}
+function update(dt){if(!playing)return;elapsed+=dt;timeLeft-=dt;timeDirty+=dt;autoRenewPoi();tryBoss();if(timeLeft<=0)stageNext();if(timeDirty>.1){$('timer').textContent='0:'+String(Math.max(0,Math.ceil(timeLeft))).padStart(2,'0');timeDirty=0}
  netWorld=worldFromAim(aim.x,aim.y);
- const oval=(netWorld[0]/4.95)**2+(netWorld[2]/3.50)**2;
+ const oval=(netWorld[0]/7.85)**2+(netWorld[2]/5.9)**2;
  if(oval>1){netWorld[0]/=Math.sqrt(oval);netWorld[2]/=Math.sqrt(oval)}
  if(net&&net.dur>0&&!lift){net.wet+=dt;net.dur=Math.max(0,net.dur-dt*(net.kind===1?1.2:.45));if(net.dur<=0)breakPoi();if(Math.floor(elapsed*5)%5===0)updateDur()}
  if(feverLeft>0){feverLeft-=dt;if(feverLeft<=0){feverLeft=0;status('金魚ラッシュが終了。次の捕獲を狙おう。')}if(Math.floor(elapsed*5)%5===0)wallet()}
@@ -321,14 +339,14 @@ function update(dt){if(!playing)return;elapsed+=dt;timeLeft-=dt;timeDirty+=dt;tr
 }
 function drawPool(){const st=stages[stage];gl.clearColor(...rgb('#0d2237'),1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.uniform3fv(loc.light,[.32,.87,.43]);gl.uniform3fv(loc.fog,rgb('#183649'));
  // Round festival basin — modelled 3D water, timber trim, and submerged bed.
- draw('cyl','#513d40',{p:[0,-.56,0],s:[11.9,.80,9.0]});
- draw('cyl','#ad825f',{p:[0,-.35,0],s:[11.72,.22,8.81]});
- draw('cyl',st.floor,{p:[0,-.22,0],s:[11.2,.18,8.31]});
- draw('cyl',st.water,{p:[0,-.09,0],s:[11.12,.045,8.22]},M.I(),.55);
- draw('torus','#e3c18e',{p:[0,-.02,0],s:[5.77,1,4.38]},M.I(),.6);
- draw('torus','#765c5a',{p:[0,-.23,0],s:[5.86,1,4.46]});
- for(let i=0;i<8;i++){let x=Math.cos(i*.785)*5.30,z=Math.sin(i*.785)*3.89;draw('sphere',i%2?'#6bc7c8':'#83e2d4',{p:[x,-.018,z],s:[.06,.035,.08]},M.I(),.75)}
- for(let i=0;i<10;i++){let x=Math.sin(i*5.64)*4.30,z=Math.cos(i*3.4)*3.14;draw('torus','#438ea0',{p:[x,-.04,z],s:[.20+.05*Math.sin(elapsed*2+i),1,.13+.04*Math.sin(elapsed*2+i)]})}
+ draw('cyl','#513d40',{p:[0,-.56,0],s:[18.0,.80,13.4]});
+ draw('cyl','#ad825f',{p:[0,-.35,0],s:[17.7,.22,13.15]});
+ draw('cyl',st.floor,{p:[0,-.22,0],s:[17.0,.18,12.52]});
+ draw('cyl',st.water,{p:[0,-.09,0],s:[16.9,.045,12.42]},M.I(),.55);
+ draw('torus','#e3c18e',{p:[0,-.02,0],s:[8.84,1,6.57]},M.I(),.6);
+ draw('torus','#765c5a',{p:[0,-.23,0],s:[8.94,1,6.65]});
+ for(let i=0;i<6;i++){let x=Math.cos(i*1.0472)*8.28,z=Math.sin(i*1.0472)*6.10;draw('sphere',i%2?'#6bc7c8':'#83e2d4',{p:[x,-.018,z],s:[.06,.035,.08]},M.I(),.75)}
+ for(let i=0;i<5;i++){let x=Math.sin(i*5.64)*6.70,z=Math.cos(i*3.4)*4.75;draw('torus','#438ea0',{p:[x,-.04,z],s:[.20+.05*Math.sin(elapsed*2+i),1,.13+.04*Math.sin(elapsed*2+i)]})}
  for(const r of ripple){let k=r.t/r.duration,sz=r.size+k*.7;draw('torus','#9acdcf',{p:[r.x,.06,r.z],s:[sz,1,sz]},M.I(),.8)}
 }
 function fishModel(f,now){if(f.hooked&&(!lift||lift.t>=.78))return;let x=f.x,z=f.z,y=.19+Math.sin(now*.002+f.phase)*.038;let facing=-Math.atan2(f.vz,f.vx);
@@ -354,19 +372,10 @@ function fishModel(f,now){if(f.hooked&&(!lift||lift.t>=.78))return;let x=f.x,z=f
  if(f.type.boss){draw('sphere','#fce5a1',{p:[0,.32,.0],s:[.12,.12,.12]},root,.92);draw('sphere','#fff7ce',{p:[-.32,.2,.18],s:[.08,.08,.08]},root,.87);}
  if(f.type.value>=20){draw('sphere','#fbefb9',{p:[-.05,-.10,-.23],s:[.14,.08,.045]},root,.9)}
 }
-function drawNet(){if(!playing||!net)return;let x=lift?lift.px:netWorld[0],z=lift?lift.pz:netWorld[2],h=lift?.rise||0;const shade=net.dur/net.max<.35?'#df9c7b':poiConfigs[net.kind].color,root=M.t(x,.34+h,z);
- // Poi is a 3D ring with open mesh; moving it never teleports on pointer-down.
- draw('torus',shade,{s:[.68,1,.68]},root,.8);
- for(let i=-2;i<=2;i++){let v=i*.225,width=Math.sqrt(Math.max(0,.62*.62-v*v))*2;
- draw('box','#cae5d7',{p:[0,-.012,v],s:[width,.014,.014]},root);
- draw('box','#cae5d7',{p:[v,-.012,0],s:[.014,.014,width]},root)}
- draw('cyl',net.kind===5?'#bd9353':'#b58b72',{p:[.63,-.005,.16],s:[.22,.10,.22]},root);
- // Short handle only — never camera-size, never drawn across the aiming pointer.
- draw('box','#a98260',{p:[1.04,.016,.46],s:[1.25,.082,.084],ry:-.35},root);
- if(net.dur/net.max<.30){draw('sphere','#f6c78a',{p:[-.11,-.01,.17],s:[.13,.025,.12]},root)}
-}
+// Single visible poi: only the SVG reticle below. No duplicate 3D net or reflection.
+function drawNet(){}
 const poiOverlay=document.createElement('div');poiOverlay.className='poi-visual off';poiOverlay.id='poiGuide';
-poiOverlay.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112"><g stroke-linecap="round"><path d="M78 74 L104 103" stroke="#5c3b2d" stroke-width="12"/><path d="M78 74 L104 103" stroke="#ddbd8b" stroke-width="7"/><ellipse cx="48" cy="43" rx="33" ry="28" fill="#d5f7e4" fill-opacity=".18" stroke="#3d5c5e" stroke-width="11"/><ellipse cx="48" cy="43" rx="33" ry="28" fill="none" stroke="#ffeac4" stroke-width="6"/><path d="M22 29 L74 57 M23 43 L70 69 M32 20 L78 45 M22 58 L73 26 M34 67 L72 20" stroke="#e9fcf3" stroke-opacity=".72" stroke-width="2"/></g><circle cx="48" cy="43" r="3" fill="#ffebae"/></svg>';
+poiOverlay.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" aria-label="ポイ"><g stroke-linecap="round" stroke-linejoin="round"><path d="M78 78 L108 108" stroke="#5d4334" stroke-width="10"/><path d="M78 78 L108 108" stroke="#d3b788" stroke-width="5"/><circle cx="54" cy="53" r="35" fill="#d8f3e9" fill-opacity=".14" stroke="#103b48" stroke-width="10"/><circle cx="54" cy="53" r="35" fill="none" stroke="#fce7c5" stroke-width="5"/><path d="M32 27 L78 78 M23 44 L64 86 M44 20 L86 67 M24 65 L66 23 M42 84 L85 41 M20 53 L88 53 M54 19 L54 87" stroke="#e3fbef" stroke-width="1.65" stroke-opacity=".78"/></g><circle cx="54" cy="53" r="3" fill="#fff4c6"/></svg>';
 arena.appendChild(poiOverlay);
 function updatePoiOverlay(){
  if(!playing||!net){poiOverlay.classList.add('off');return}
@@ -375,17 +384,21 @@ function updatePoiOverlay(){
  poiOverlay.classList.remove('off');
  poiOverlay.style.left=(p?.visible?p.x:aim.x*canvas.clientWidth)+'px';
  poiOverlay.style.top=(p?.visible?p.y:aim.y*canvas.clientHeight)+'px';
- poiOverlay.style.opacity=net.broken?.48:1;
+ poiOverlay.style.opacity=1;
+ poiOverlay.classList.toggle('lifting',!!lift);
+ poiOverlay.classList.toggle('broken',!!net.broken);
 }
 function updateTags(){
  for(const f of fishes){
   if(!f.tag||!f.sprite)continue;
-  if(f.hooked){f.tag.classList.add('off');f.sprite.classList.add('off');continue}
-  const p=screen([f.x,.24,f.z]);if(!p?.visible){f.tag.classList.add('off');f.sprite.classList.add('off');continue}
+  if(f.hooked&&!(lift?.fish===f&&lift.success)){f.tag.classList.add('off');f.sprite.classList.add('off');continue}
+  const carried=lift?.fish===f&&lift.success;
+  const fx=carried?lift.px:f.x,fz=carried?lift.pz:f.z,fy=carried?(.34+lift.rise):.24;
+  const p=screen([fx,fy,fz]);if(!p?.visible){f.tag.classList.add('off');f.sprite.classList.add('off');continue}
   f.sprite.classList.remove('off');f.sprite.style.left=p.x+'px';f.sprite.style.top=p.y+'px';
   const q=screen([f.x+f.vx*.2,.24,f.z+f.vz*.2]);
   const angle=q?Math.atan2(q.y-p.y,q.x-p.x)*180/Math.PI:0;
-  f.sprite.style.rotate=angle+'deg';
+  f.sprite.style.rotate=(carried?0:angle)+'deg';f.sprite.style.zIndex=carried?'13':'6';
   f.sprite.style.scale=Math.max(.67,Math.min(1.15,f.type.scale*.95));
   f.tag.classList.remove('off');
   f.tag.style.left=(p.x+22)+'px';f.tag.style.top=(p.y-22)+'px';f.tag.style.scale=1;
