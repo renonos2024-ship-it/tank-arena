@@ -1,10 +1,10 @@
-<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"><meta name="theme-color" content="#10172a"><title>宵まちメダル横丁 | 3D回転射的 v1.8 照準CSS修正版</title>
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"><meta name="theme-color" content="#10172a"><title>宵まちメダル横丁 | 3D回転射的 v2.0 景品30種・10ステージ</title>
 <style>
 :root{--gold:#ffdf9b;--aqua:#90f0d4;--soft:#b4c3d3;--panel:#182439;--stroke:#41536b}*{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% -10%,#293755,#0b101e 70%);color:#f5f0e5;font-family:system-ui,-apple-system,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif}button{cursor:pointer;touch-action:manipulation;font:inherit}button:focus-visible{outline:2px solid #8ee4ee;outline-offset:3px}.shell{max-width:1250px;margin:auto;padding:12px 15px 25px}.top{display:flex;align-items:center;gap:11px;margin-bottom:10px}.logo{background:linear-gradient(150deg,#ffd67d,#da8757);border-radius:13px;font-size:25px;width:46px;height:46px;display:grid;place-items:center;box-shadow:0 3px 0 #5d3a39}.title{font-size:19px;font-weight:900;letter-spacing:.03em}.eyebrow{font-size:10px;color:#a7baca;letter-spacing:.1em}.balance{margin-left:auto;text-align:right}.balance b{color:var(--gold);font-size:26px;font-variant-numeric:tabular-nums}.balance small{display:block;font-size:10px;color:var(--soft)}.arena{position:relative;width:100%;height:min(56vw,560px);min-height:365px;border:3px solid #866949;border-radius:19px;overflow:hidden;background:#112034;isolation:isolate;box-shadow:0 14px 38px #050912aa,inset 0 0 20px #f8b26433}#scene{width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}.arena:before{content:"";position:absolute;z-index:3;left:0;right:0;top:0;height:15px;background:repeating-linear-gradient(90deg,#ce504f 0 40px,#faf0d5 40px 80px);box-shadow:0 2px 9px #160e13a8;pointer-events:none}.arena::after{content:"";position:absolute;inset:15px 0 0;box-shadow:inset 0 0 48px #060c1eb8;pointer-events:none;z-index:1}.hud{position:absolute;z-index:5;display:flex;align-items:start;justify-content:space-between;top:23px;left:12px;right:12px;pointer-events:none;gap:8px}.pill{background:#101c30d9;border:1px solid #73809888;backdrop-filter:blur(7px);border-radius:11px;padding:8px 10px;color:#ebeff3;font-size:12px}.pill strong{font-size:17px;color:#ffe0a0;display:block}.time{font-size:25px;font-weight:1000;color:#fff4dc;font-variant-numeric:tabular-nums}.time.warn{color:#ff968f}.banner{position:absolute;left:50%;top:22%;transform:translate(-50%,-50%);background:#191d32ed;padding:11px 22px;z-index:12;border:2px solid #ffe1a1;border-radius:14px;text-align:center;min-width:215px;font-weight:900;box-shadow:0 6px 38px #000c;pointer-events:none;opacity:0;transition:opacity .22s}.banner.show{opacity:1}.banner .large{font-size:25px;color:#ffe8a2}.cross{position:absolute;z-index:8;width:24px;height:24px;margin:-12px 0 0 -12px;left:50%;top:53%;border:2px solid #ffe7bc;border-radius:50%;box-shadow:0 0 0 1px #193044,0 0 15px #ffd88777;pointer-events:none;transform:translate3d(0,0,0)}.cross:before,.cross:after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#ffeacc;box-shadow:0 0 5px #fff}.cross:before{height:1.5px;width:34px}.cross:after{width:1.5px;height:34px}.cross i{display:block;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#ffd893;width:3px;height:3px;border-radius:50%;border:1px solid #462b37}.cross.firing{animation:crossFire .13s ease-out}@keyframes crossFire{50%{scale:1.17;filter:brightness(1.5)}}.cross.confirm{border-color:#9af0dc}.scoreTag{position:absolute;z-index:6;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap;background:linear-gradient(160deg,#ffecc1,#f2b566);color:#543120;border:2px solid #8a542c;border-radius:9px;padding:3px 6px;font-weight:1000;font-size:13px;text-shadow:0 1px #fff8;box-shadow:0 3px 0 #6d352faa,0 6px 11px #091120aa}.scoreTag.jack{background:linear-gradient(160deg,#e7fcff,#9ddbe6);border-color:#5396a6}.scoreTag.isgone{opacity:0}.tip{position:absolute;left:12px;bottom:14px;z-index:5;pointer-events:none;font-size:11px;color:#fff4d4;background:#121d2cb8;padding:5px 8px;border-radius:8px}.floater{position:absolute;z-index:11;font-weight:1000;font-size:25px;pointer-events:none;text-shadow:0 2px 4px #111,0 0 14px #ffc772;color:#fff2bf;white-space:nowrap;animation:rise 1.05s ease-out forwards}@keyframes rise{0%{opacity:0;transform:translate(-50%,0) scale(.7)}18%{opacity:1}100%{opacity:0;transform:translate(-50%,-88px) scale(1.3)}}.impact{position:absolute;z-index:9;width:90px;height:90px;margin:-45px 0 0 -45px;pointer-events:none;border-radius:50%;border:3px solid #fff1bf;box-shadow:0 0 15px #ffe6a3;animation:hitAnim .35s ease-out forwards}@keyframes hitAnim{to{transform:scale(2);opacity:0}}.bottom{display:grid;grid-template-columns:1fr 245px;gap:11px;margin-top:11px}.ammunitions{border:1px solid var(--stroke);background:linear-gradient(120deg,#1b293e,#132034);padding:11px;border-radius:15px}.sec-label{font-size:11px;font-weight:800;color:#bdd0dc;letter-spacing:.04em;margin-bottom:8px}.ammoRow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.ammo{background:#25344a;color:#f5edde;border:1px solid #5d7087;border-radius:10px;padding:9px 4px;font-size:12px}.ammo b{display:block;font-size:14px}.ammo small{display:block;color:#bdd2d8;font-size:10px}.ammo.sel{background:linear-gradient(160deg,#614432,#987047);color:#ffedd0;border:2px solid #ffdc91}.ammo.sel small{color:#ffebb7}.actioncol{display:flex;flex-direction:column;gap:8px}button.fire{flex:1;min-height:64px;border:0;border-radius:14px;background:linear-gradient(#ffda88,#ef9655);color:#3b2520;font-size:19px;font-weight:1000;box-shadow:inset 0 1px #fff8,0 5px 0 #814e43}button.fire:active{transform:translateY(3px);box-shadow:0 2px 0 #814e43}button.fire:disabled{opacity:.5}.miniActions{display:flex;gap:6px}.miniActions button{flex:1;background:#29384e;color:#d9e8ee;border:1px solid #51647c;border-radius:9px;padding:8px 2px;font-size:12px}.status{margin-top:10px;font-size:13px;min-height:28px;color:#b9e9e1}.notes{color:#8ea4b5;font-size:11px;margin-top:8px;line-height:1.6}.cover{position:absolute;z-index:20;inset:0;background:linear-gradient(135deg,#0e1729f2,#26364be8);display:flex;align-items:center;justify-content:center;text-align:center;padding:30px}.cover.hidden{display:none}.coverContent{background:#15253ada;border:1px solid #8e7d6a;padding:22px;border-radius:21px;box-shadow:0 0 40px #0008;max-width:490px}.coverTitle{font-size:clamp(24px,4vw,42px);font-weight:1000;color:#ffdc8f}.coverp{font-size:13px;color:#c5d5e1;line-height:1.9;margin:12px 0 19px}.start{border:0;background:#ffe09b;border-radius:10px;padding:13px 32px;color:#433121;font-size:18px;font-weight:900}.controlhelp{color:#aac2d2;font-size:11px;margin-top:12px}.footer{font-size:11px;color:#8e9eaf;padding-top:10px}.error{background:#642a34;color:white;padding:20px;position:absolute;inset:12%;z-index:22;border-radius:10px;display:none}
 @media(max-width:700px){.shell{padding:9px 7px 18px}.title{font-size:16px}.eyebrow{font-size:9px}.logo{width:36px;height:36px;font-size:21px}.balance b{font-size:20px}.arena{height:58vh;min-height:350px;max-height:540px;border-width:2px}.bottom{grid-template-columns:1fr 112px;gap:7px}.ammunitions{padding:7px}.ammoRow{gap:4px}.ammo{padding:7px 2px;font-size:10px}.ammo b{font-size:11px}.ammo small{font-size:9px}.fire{min-height:70px;font-size:17px}.sec-label{margin-bottom:5px}.pill{padding:5px 7px;font-size:10px}.pill strong{font-size:14px}.time{font-size:23px}.scoreTag{font-size:12px;padding:3px 5px}.tip{font-size:10px}.notes{font-size:10px}.miniActions button{padding:7px 1px;font-size:10px}.coverContent{padding:16px}.cross{width:24px;height:24px;margin:-12px 0 0 -12px}.cross:before{width:34px}.cross:after{height:34px}}
-</style></head><body><main class="shell"><header class="top"><div class="logo">🎯</div><div><div class="eyebrow">YOIMACHI MEDAL YOKOCHO · WEBGL v1.8 FIX</div><div class="title">宵まち射的 — 流れる景品屋</div></div><div class="balance"><small>メダル</small><b id="wallet">120</b></div></header>
-<section class="arena" id="arena"><canvas id="scene"></canvas><div class="hud"><div class="pill"><strong id="stageLabel">第1幕・夜の縁日</strong><span id="stageSub">景品を狙って撃ち落とそう</span></div><div class="pill" style="text-align:center"><div class="time" id="clock">0:30</div><small style="font-size:10px">次のステージまで</small></div><div class="pill" style="text-align:right"><strong>獲得 <span id="earned">0</span>枚</strong><span>連続命中 <b id="combo">0</b></span></div></div><div id="cross" class="cross"><i></i></div><div class="banner" id="banner"><div class="large" id="bannerTitle">ステージ変更！</div><div id="bannerDesc">景品が入れ替わります</div></div><div class="tip">v1.8｜照準CSS衝突を修正・指で照準を動かしながら発射可能</div><div class="cover" id="cover"><div class="coverContent"><div class="eyebrow">REAL 3D ARCADE · STAGE CHANGE EVERY 30 SECONDS</div><div class="coverTitle">🎯 まわる射的屋</div><div class="coverp">本物の3D空間を流れる景品を狙え。<br>1枚から撃てる。高額景品は何発も当てて落とそう。<br><strong>HPは非表示、落とすと表示の枚数を獲得。</strong><br>30秒ごとに舞台と仕掛けが切り替わる。</div><button id="start" class="start">▶ プレイ開始・音楽ON</button><div class="controlhelp">音が出ない環境でもゲームはプレイ可能です。</div></div></div><div class="error" id="error"></div></section>
-<section class="bottom"><div class="ammunitions"><div class="sec-label">弾の種類を選ぶ（1クレジット＝メダル1枚）</div><div class="ammoRow"><button class="ammo sel" data-ammo="1"><b>🟡 1枚</b>通常弾<small>威力1 / 標準</small></button><button class="ammo" data-ammo="3"><b>🔵 3枚</b>精密弾<small>威力2 / 高精度</small></button><button class="ammo" data-ammo="5"><b>🔴 5枚</b>強化弾<small>威力4 / 高威力</small></button></div></div><div class="actioncol"><button class="fire" id="fire">🎯 発射！</button><div class="miniActions"><button id="sound">🔊 BGM</button><button id="refill">＋30枚</button></div></div></section><div class="status" id="status">準備OK。指で照準を相対移動。まれに1枚弾でも一撃獲得。強化弾でもかすり当たりなら効かない。</div><div class="notes">※試作版。射的の技術と立体表現を検証するゲームです。実機とは独立したオリジナル作品。課金・換金なし。自動でBGMは始まりません。上部の「プレイ開始」から有効化します。</div><div class="footer">宵まちメダル横丁 / 3D shooting gallery v1.8</div></main>
+</style></head><body><main class="shell"><header class="top"><div class="logo">🎯</div><div><div class="eyebrow">YOIMACHI MEDAL YOKOCHO · WEBGL v2.0 · 30 PRIZES / 10 STAGES</div><div class="title">宵まち射的 — 流れる景品屋</div></div><div class="balance"><small>メダル</small><b id="wallet">120</b></div></header>
+<section class="arena" id="arena"><canvas id="scene"></canvas><div class="hud"><div class="pill"><strong id="stageLabel">第1幕・夜の縁日</strong><span id="stageSub">景品を狙って撃ち落とそう</span></div><div class="pill" style="text-align:center"><div class="time" id="clock">0:30</div><small style="font-size:10px">次のステージまで</small></div><div class="pill" style="text-align:right"><strong>獲得 <span id="earned">0</span>枚</strong><span>連続命中 <b id="combo">0</b></span></div></div><div id="cross" class="cross"><i></i></div><div class="banner" id="banner"><div class="large" id="bannerTitle">ステージ変更！</div><div id="bannerDesc">景品が入れ替わります</div></div><div class="tip">v2.0｜景品30種・10ステージ｜2本指で照準＋発射</div><div class="cover" id="cover"><div class="coverContent"><div class="eyebrow">REAL 3D ARCADE · STAGE CHANGE EVERY 30 SECONDS</div><div class="coverTitle">🎯 まわる射的屋</div><div class="coverp">本物の3D空間を流れる景品を狙え。<br>1枚から撃てる。高額景品は何発も当てて落とそう。<br><strong>HPは非表示、落とすと表示の枚数を獲得。</strong><br>30秒ごとに舞台と仕掛けが切り替わる。</div><button id="start" class="start">▶ プレイ開始・音楽ON</button><div class="controlhelp">音が出ない環境でもゲームはプレイ可能です。</div></div></div><div class="error" id="error"></div></section>
+<section class="bottom"><div class="ammunitions"><div class="sec-label">弾の種類を選ぶ（1クレジット＝メダル1枚）</div><div class="ammoRow"><button class="ammo sel" data-ammo="1"><b>🟡 1枚</b>通常弾<small>威力1 / 標準</small></button><button class="ammo" data-ammo="3"><b>🔵 3枚</b>精密弾<small>威力4 / 高精度</small></button><button class="ammo" data-ammo="5"><b>🔴 5枚</b>強化弾<small>威力7 / 高威力</small></button></div></div><div class="actioncol"><button class="fire" id="fire">🎯 発射！</button><div class="miniActions"><button id="sound">🔊 BGM</button><button id="refill">＋30枚</button></div></div></section><div class="status" id="status">準備OK。指で照準を相対移動。まれに1枚弾でも一撃獲得。強化弾でもかすり当たりなら効かない。</div><div class="notes">※試作版。射的の技術と立体表現を検証するゲームです。実機とは独立したオリジナル作品。課金・換金なし。自動でBGMは始まりません。上部の「プレイ開始」から有効化します。</div><div class="footer">宵まちメダル横丁 / 3D shooting gallery v2.0</div></main>
 <script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),canvas=$('scene'),arena=$('arena'),overlay=$('cover'),cross=$('cross');
@@ -36,27 +36,95 @@ function renderMesh(mesh,color,mat,gloss=.2,ambient=.56){
  if(mat[14]>-3.85)return;
  gl.bindBuffer(gl.ARRAY_BUFFER,meshes[mesh].buf);gl.enableVertexAttribArray(loc.p);gl.enableVertexAttribArray(loc.n);gl.vertexAttribPointer(loc.p,3,gl.FLOAT,false,24,0);gl.vertexAttribPointer(loc.n,3,gl.FLOAT,false,24,12);gl.uniformMatrix4fv(loc.model,false,mat);gl.uniformMatrix4fv(loc.mvp,false,M.mul(VP,mat));gl.uniform3fv(loc.col,rgb(color));gl.uniform1f(loc.gloss,gloss);gl.uniform1f(loc.ambient,ambient);gl.drawArrays(gl.TRIANGLES,0,meshes[mesh].count)}
 const draw=(mesh,col,t={},root=M.I(),shine=.25)=>renderMesh(mesh,col,addTransform(root,t),shine);
-const themes=[{name:'第1幕・夜の縁日',desc:'左右に流れる景品',sky:'#151f38',wall:'#314259',wood:'#8b533e',stripe:'#e6b66b',speed:1.20,music:0},{name:'第2幕・おばけ屋敷',desc:'上下に揺れる的に注意！',sky:'#17273a',wall:'#204e53',wood:'#68547b',stripe:'#82d0a8',speed:1.7,music:1},{name:'第3幕・星屑マーケット',desc:'逆向き・高速のベルト',sky:'#1c1a3a',wall:'#4a2d5f',wood:'#75609d',stripe:'#d8b2fb',speed:-2.05,music:2},{name:'第4幕・黄金の夜店',desc:'回転景品が増える！',sky:'#342438',wall:'#67503b',wood:'#a26740',stripe:'#ffdd94',speed:1.85,music:3}];
-// Rare weak-spot knockouts and edge ricochets add controlled randomness.
-// Probabilities are per successful hit; no chance of missing is hidden in this roll.
-const luckyRates={2:0,5:.004,9:.018,16:.012,24:.006,36:.003};
+
+const themes=[
+{name:'第1幕・夜の縁日',desc:'基本の横移動。位置を読んで狙おう',sky:'#151f38',wall:'#314259',wood:'#8b533e',stripe:'#e6b66b',speed:1.12,music:0,mode:'steady'},
+{name:'第2幕・おばけ屋敷',desc:'上下に揺れる標的。高さを予測',sky:'#17273a',wall:'#204e53',wood:'#68547b',stripe:'#82d0a8',speed:1.32,music:1,mode:'bob'},
+{name:'第3幕・星屑の路地',desc:'逆回転！前列と後列で速度も異なる',sky:'#1c1a3a',wall:'#4a2d5f',wood:'#75609d',stripe:'#d8b2fb',speed:-1.7,music:2,mode:'reverse'},
+{name:'第4幕・黄金の夜店',desc:'景品が回転。正面を向く瞬間が狙い目',sky:'#342438',wall:'#67503b',wood:'#a26740',stripe:'#ffdd94',speed:1.35,music:3,mode:'spin'},
+{name:'第5幕・時計じかけの町',desc:'3秒移動して1.5秒停止。止まる瞬間を狙おう',sky:'#1c2732',wall:'#4c5b65',wood:'#82674c',stripe:'#ded7c2',speed:1.6,music:0,mode:'stop'},
+{name:'第6幕・水面の縁日',desc:'波打つ横移動と上下動。中心を見極める',sky:'#0e2c41',wall:'#215c67',wood:'#53647b',stripe:'#a0e6e8',speed:1.12,music:1,mode:'wave'},
+{name:'第7幕・風車マーケット',desc:'追い風と向かい風。急な加減速に注意',sky:'#1b293b',wall:'#396477',wood:'#746243',stripe:'#e5e2aa',speed:1.45,music:2,mode:'gust'},
+{name:'第8幕・鏡の回廊',desc:'上下2列が逆向き。流れを切り替えて狙おう',sky:'#2e2441',wall:'#49446e',wood:'#66698a',stripe:'#bdb5ff',speed:1.43,music:3,mode:'mirror'},
+{name:'第9幕・流星通り',desc:'高速ステージ！進行方向の先を撃とう',sky:'#131b37',wall:'#27385e',wood:'#654b6a',stripe:'#e7a7da',speed:2.18,music:2,mode:'surge'},
+{name:'第10幕・宵まち大祭',desc:'停止・波・回転が混ざる最終ステージ',sky:'#352435',wall:'#6c4856',wood:'#9a6748',stripe:'#f3d78d',speed:1.65,music:3,mode:'final'}
+];
+const baseNames=[
+'三色だんご','小さなアヒル','豆まねき猫','ブリキロボ','紅だるま','いたずらおばけ',
+'抹茶だんご','水兵アヒル','鈴ねこ','青いロボ','花火だるま','月夜のおばけ',
+'星空だんご','船長アヒル','小判ねこ','からくりロボ','福だるま','夜光おばけ',
+'金箔だんご','王冠アヒル','黒猫','流星ロボ','金だるま','宝石おばけ',
+'虹色だんご','銀河アヒル','白金ねこ','極光ロボ','七宝だるま','幻影おばけ'
+];
+const prizesValue=[1,2,3,4,5,6,7,8,9,10,11,12,14,16,18,20,22,24,26,29,32,36,40,45,50,58,66,75,90,110];
+const modelKinds=['mochi','duck','cat','robot','daruma','ghost'];
+const modelColors=[
+['#f1deb9','#f1d174','#f7d1cb','#90d5dc','#ce6557','#d4acee'],
+['#a8d990','#83c6f1','#e5bd74','#84a3e6','#8c74bd','#abd9c5'],
+['#f2bdd2','#f6cf71','#b6d2e6','#d09ded','#e5a173','#9eb8f3'],
+['#f5d48e','#fcad68','#8ab3a3','#c0b1d9','#daae63','#accbe2'],
+['#e3d8ff','#92e5cf','#e2bde5','#f4c2d4','#c89d61','#f0e3c7']
+];
+function prizeHp(v){
+ if(v===24)return 25; // 24 medals require >=13 perfect 1-medal hits unless an exceptionally rare weak-point knockout.
+ const factor=v<=5?.72:v<=12?.75:v<=24?1.22:v<=36?1.38:1.48;
+ return Math.max(1,Math.round(v*factor*.505*(v>=24?1.25:1)));
+}
+const types=prizesValue.map((value,i)=>({kind:modelKinds[i%6],name:baseNames[i],value,
+ hp:prizeHp(value),rad:.49+[.02,.03,.06,.06,.09,.08][i%6],
+ col:modelColors[Math.floor(i/6)][i%6],variant:Math.floor(i/6)}));
+function luckyRate(v){if(v<=3)return 0;if(v<=12)return .0012;if(v<=24)return .00045;if(v<=36)return .00022;return .00006}
 function resolveHit(type,shot,relativeMiss,random=Math.random){
  const aimGrade=relativeMiss<.38?1.5:relativeMiss<.7?1:.35;
  const ammoBonus=shot.cost===5?1.5:shot.cost===3?1.25:1;
- if(type.hp>1 && random()<luckyRates[type.value]*aimGrade*ammoBonus){
-   return {power:type.hp,lucky:true,glance:false};
- }
+ if(type.hp>1 && random()<luckyRate(type.value)*aimGrade*ammoBonus)
+  return {power:type.hp,lucky:true,glance:false};
  const grazeChance=relativeMiss>.80?.46:relativeMiss>.63?.22:relativeMiss>.43?.07:0;
  if(random()<grazeChance)return {power:0,lucky:false,glance:true};
  let power=shot.power+(relativeMiss<.38?1:0);
  if(shot.cost>1 && relativeMiss>.64 && random()<.26)power=Math.max(1,power-1);
  return {power,lucky:false,glance:false};
 }
-const types=[{kind:'mochi',name:'だんご',value:2,hp:1,rad:.51,col:'#f4e0be'}, {kind:'duck',name:'あひる',value:5,hp:2,rad:.53,col:'#f6d16b'}, {kind:'cat',name:'招き猫',value:9,hp:6,rad:.56,col:'#ece9df'}, {kind:'robot',name:'ロボ',value:16,hp:6,rad:.57,col:'#8cd8d2'}, {kind:'daruma',name:'金だるま',value:24,hp:8,rad:.64,col:'#e87d63'}, {kind:'ghost',name:'幻おばけ',value:36,hp:11,rad:.62,col:'#bd94f7'}];
-let stage=0,remaining=30,played=0,coins=120,earned=0,combo=0,ammo=1,shotReady=0,aim={x:.5,y:.53},state='intro',targets=[],shots=[],sparks=[],floatEls=[],musicOn=true,last=performance.now(),clockDirty=0,messageTimer=0,bannerTimer=0,recoil=0;
-function newTarget(i,lane){let type=types[(i*2+lane+stage)%types.length];return {i,lane,type,health:type.hp,off:(i/(lane?5:6))*16-8.5,fall:0,rot:Math.random()*6.28,twist:0,bump:0,alive:true,tag:null,respawn:0}}
+function nextPrizeType(){
+ const r=Math.random();
+ const a=r<.45?0:r<.88?12:22, b=a===0?12:a===12?22:30;
+ return types[a+Math.floor(Math.random()*(b-a))];
+}
+
+let stage=0,remaining=30,played=0,coins=120,spent=0,earned=0,combo=0,ammo=1,shotReady=0,aim={x:.5,y:.53},state='intro',targets=[],shots=[],sparks=[],floatEls=[],musicOn=true,last=performance.now(),clockDirty=0,messageTimer=0,bannerTimer=0,recoil=0;
+function newTarget(i,lane){
+ const initial=[1,4,8,12,16,17,19,22,24,26,29];
+ const type=types[initial[i+(lane?6:0)]];
+ return {i,lane,type,health:type.hp,off:(i/(lane?5:6))*16-8.5,fall:0,rot:Math.random()*6.28,twist:0,bump:0,alive:true,tag:null,respawn:0};
+}
+
 function setupTargets(){for(let e of document.querySelectorAll('.scoreTag'))e.remove();targets=[];for(let lane=0;lane<2;lane++){let c=lane?5:6;for(let i=0;i<c;i++){let t=newTarget(i,lane);t.tag=document.createElement('div');t.tag.className='scoreTag'+(t.type.value>=24?' jack':'');t.tag.textContent=`🪙 ${t.type.value}`;arena.appendChild(t.tag);targets.push(t)}}}
-function worldTarget(t,atTime=played){let th=themes[stage];let speed=th.speed*(t.lane?-.73:1);let X=(((t.off+atTime*speed+18)%18+18)%18)-9;let bob=stage%4===1?Math.sin(atTime*4+t.i*1.3)*.25:stage%4===3?Math.sin(atTime*2.5+t.i*1.7)*.16:Math.sin(atTime*2.1+t.i)*.055;let y=t.lane?2.55:.83;let z=t.lane?-7.2:-4.75;return [X,y+bob,z]}
+
+function conveyorTravel(t,atTime){
+ const th=themes[stage],mode=th.mode,sign=t.lane?-.73:1;
+ let travel=atTime*th.speed;
+ if(mode==='stop'||mode==='final'){
+  const cycle=4.5,stopAt=3,full=Math.floor(atTime/cycle),partial=Math.min(stopAt,atTime%cycle);
+  travel=(full*stopAt+partial)*th.speed*1.32;
+ }
+ if(mode==='gust')travel+=.58*Math.sin(atTime*2.9);
+ if(mode==='surge')travel+=.67*Math.sin(atTime*1.85);
+ return travel*(mode==='mirror'?(t.lane?-1:1):sign);
+}
+function worldTarget(t,atTime=played){
+ const th=themes[stage],mode=th.mode,travel=conveyorTravel(t,atTime);
+ let X=(((t.off+travel+18)%18+18)%18)-9;
+ if(mode==='wave'||mode==='final')X+=.31*Math.sin(atTime*2.3+t.i*.9);
+ if(mode==='mirror')X+=.12*Math.sin(atTime*3+t.i);
+ let bob=.055*Math.sin(atTime*2.1+t.i);
+ if(mode==='bob'||mode==='final')bob+=.27*Math.sin(atTime*3.3+t.i*1.3);
+ if(mode==='wave')bob+=.21*Math.sin(atTime*2.8+t.i*.7);
+ if(mode==='surge')bob+=.10*Math.sin(atTime*5+t.i);
+ let y=t.lane?2.55:.83,z=t.lane?-7.2:-4.75;
+ if(mode==='wave'||mode==='final')z+=.11*Math.sin(atTime*1.7+t.i);
+ return [X,y+bob,z];
+}
+
 function medalSign(t){let pos=worldTarget(t);return [pos[0],pos[1]+.95,pos[2]+.3]}
 function resetStage(next){stage=next%themes.length;remaining=30;shots.length=0;if(!targets.length)setupTargets();$('stageLabel').textContent=themes[stage].name;$('stageSub').textContent=themes[stage].desc;showBanner(themes[stage].name,themes[stage].desc,2600);if(audio.ctx)audio.stage();}
 function showBanner(main,desc,ms=1000){$('bannerTitle').textContent=main;$('bannerDesc').textContent=desc;$('banner').classList.add('show');clearTimeout(bannerTimer);bannerTimer=setTimeout(()=>$('banner').classList.remove('show'),ms)}
@@ -89,12 +157,12 @@ function drawEnv(){
  }
 }
 
-function drawModel(t,now){if(!t.alive&&t.fall>=1.8)return;const p=worldTarget(t),fall=t.fall;let root=addTransform(M.I(),{p:[p[0],p[1]-fall*2.2,p[2]],s:[(t.lane?.86:1),(t.lane?.86:1),(t.lane?.86:1)],ry:(stage%4===3?played*.5:0)+Math.sin(played*1.35+t.i)*.08,rz:Math.sin(now*0.002+t.i)*.025+t.bump*(t.i%2?1:-1)+fall*2.0+(1-t.health/t.type.hp)*.12*Math.sin(played*5+t.i),rx:fall*.85});
+function drawModel(t,now){if(!t.alive&&t.fall>=1.8)return;const p=worldTarget(t),fall=t.fall;let root=addTransform(M.I(),{p:[p[0],p[1]-fall*2.2,p[2]],s:[(t.lane?.86:1),(t.lane?.86:1),(t.lane?.86:1)],ry:((themes[stage].mode==='spin'||themes[stage].mode==='final')?played*.75:0)+Math.sin(played*1.35+t.i)*.08,rz:Math.sin(now*0.002+t.i)*.025+t.bump*(t.i%2?1:-1)+fall*2.0+(1-t.health/t.type.hp)*.12*Math.sin(played*5+t.i),rx:fall*.85});
 const body=t.type.col,kind=t.type.kind;
 // pedestal under each figurine
 if(t.alive){draw('cyl','#e7cc97',{p:[0,-.46,0],s:[.56,.15,.56]},root);draw('cyl','#9c6545',{p:[0,-.53,0],s:[.65,.13,.65]},root)}
 if(kind==='mochi'){
- for(let j=0;j<3;j++){draw('sphere',['#f6e1c1','#eebfa9','#d4e4c9'][j],{p:[0,-.13+j*.23,0],s:[.34,.30,.34]},root)}draw('cyl','#8b6b51',{p:[0,-.29,.01],s:[.045,.95,.045]},root);
+ for(let j=0;j<3;j++){draw('sphere',j===1?body:['#f6e1c1','#eebfa9','#d4e4c9'][j],{p:[0,-.13+j*.23,0],s:[.34,.30,.34]},root)}draw('cyl','#8b6b51',{p:[0,-.29,.01],s:[.045,.95,.045]},root);
 }else if(kind==='duck'){
  draw('sphere',body,{p:[0,-.06,0],s:[.52,.38,.43]},root);draw('sphere',body,{p:[.16,.33,-.08],s:[.31,.31,.30]},root);draw('cone','#f2b36c',{p:[.41,.22,.2],s:[.22,.20,.19],rz:-Math.PI/2},root);draw('sphere','#273a43',{p:[.26,.41,.16],s:[.055,.062,.043]},root);draw('sphere','#f8e3a8',{p:[-.30,-.05,.17],s:[.3,.16,.19]},root);
 }else if(kind==='cat'){
@@ -102,9 +170,16 @@ if(kind==='mochi'){
 }else if(kind==='robot'){
  draw('box',body,{p:[0,-.20,0],s:[.68,.57,.44]},root);draw('box','#d9f5ee',{p:[0,.36,0],s:[.76,.51,.56]},root);for(let x of [-.21,.21])draw('sphere','#255e7e',{p:[x,.39,.30],s:[.095,.105,.05]},root);draw('cyl','#f3d46e',{p:[0,.78,0],s:[.035,.30,.035]},root);draw('sphere','#f3d46e',{p:[0,.98,0],s:[.12,.12,.12]},root);draw('box','#71aba8',{p:[-.51,-.18,0],s:[.20,.36,.24]},root);draw('box','#71aba8',{p:[.51,-.18,0],s:[.20,.36,.24]},root);
 }else if(kind==='daruma'){
- draw('sphere','#d75651',{p:[0,0,0],s:[.48,.61,.38]},root);draw('sphere','#f3dfba',{p:[0,.20,.315],s:[.32,.31,.13]},root);for(let x of [-.13,.13]){draw('sphere','#322731',{p:[x,.24,.418],s:[.065,.081,.035]},root);draw('box','#6c3438',{p:[x,.39,.42],s:[.19,.045,.04]},root)}draw('sphere','#f6c36f',{p:[0,-.27,.34],s:[.21,.16,.05]},root);
+ draw('sphere',body,{p:[0,0,0],s:[.48,.61,.38]},root);draw('sphere','#f3dfba',{p:[0,.20,.315],s:[.32,.31,.13]},root);for(let x of [-.13,.13]){draw('sphere','#322731',{p:[x,.24,.418],s:[.065,.081,.035]},root);draw('box','#6c3438',{p:[x,.39,.42],s:[.19,.045,.04]},root)}draw('sphere','#f6c36f',{p:[0,-.27,.34],s:[.21,.16,.05]},root);
 }else{
- draw('sphere','#d8c5ef',{p:[0,.22,0],s:[.43,.48,.36]},root);draw('cone','#d8c5ef',{p:[0,-.23,0],s:[.42,.62,.36],ry:Math.PI},root);for(let x of [-.15,.15])draw('sphere','#41315f',{p:[x,.25,.33],s:[.075,.10,.05]},root);draw('sphere','#e69bb8',{p:[0,.06,.34],s:[.095,.1,.035]},root);draw('sphere','#fce7b6',{p:[-.28,.63,.01],s:[.11,.11,.11]},root);
+ draw('sphere',body,{p:[0,.22,0],s:[.43,.48,.36]},root);draw('cone',body,{p:[0,-.23,0],s:[.42,.62,.36],ry:Math.PI},root);for(let x of [-.15,.15])draw('sphere','#41315f',{p:[x,.25,.33],s:[.075,.10,.05]},root);draw('sphere','#e69bb8',{p:[0,.06,.34],s:[.095,.1,.035]},root);draw('sphere','#fce7b6',{p:[-.28,.63,.01],s:[.11,.11,.11]},root);
+}
+// Five visual variants per base model: colors, accessories and distinctive crests.
+if(t.type.variant>0){
+ const accent=['#f4d489','#a8f5c7','#efd6ff','#fce4a3','#fff1bd'][t.type.variant];
+ draw('sphere',accent,{p:[0,-.16,.49],s:[.11,.11,.055]},root,.85);
+ if(t.type.variant>=2)draw('cone',accent,{p:[0,.87,0],s:[.10,.20,.10]},root,.75);
+ if(t.type.variant>=4)for(let u of [-.33,.33])draw('sphere','#fce1a9',{p:[u,.56,.08],s:[.07,.07,.07]},root,.9);
 }
 // small rim sparkle for rare prize
 if(t.type.value>=24){let phase=now*.002+t.i;draw('sphere','#fce1a9',{p:[Math.cos(phase)*.68,.45+Math.sin(phase)*.16,.1],s:[.065,.065,.065]},root,.9)}
@@ -130,7 +205,7 @@ function fire(){
  if(state!=='playing')return;
  const now=performance.now();if(now<shotReady)return;
  if(coins<ammo){status('メダル不足。「＋30枚」で補給できます。');return}
- coins-=ammo;wallet();shotReady=now+(ammo===1?220:ammo===3?310:410);recoil=1;
+ coins-=ammo;spent+=ammo;wallet();shotReady=now+(ammo===1?220:ammo===3?310:410);recoil=1;
  const spread=ammo===3?.0009:ammo===5?.0035:.0048;
  const nx=clamp(aim.x+(Math.random()-.5)*spread,0,1),ny=clamp(aim.y+(Math.random()-.5)*spread,0,1);
  const dir=screenToDir(nx,ny),choice=pickVisibleTarget(nx,ny,.16),from=camera.map((v,i)=>v+dir[i]);
@@ -138,7 +213,7 @@ function fire(){
  const d=(planeZ-camera[2])/dir[2],point=camera.map((v,i)=>v+dir[i]*d);
  shots.push({from,to:point,life:.16,age:0,hit:choice?.target||null,point,
  color:ammo===5?'#ffb37c':ammo===3?'#a0f4ff':'#ffecac',
- power:ammo===5?4:ammo===3?2:1,cost:ammo,predicted,hitQuality:choice?.quality??null});
+ power:ammo===5?7:ammo===3?4:1,cost:ammo,predicted,hitQuality:choice?.quality??null});
  cross.classList.remove('firing');void cross.offsetWidth;cross.classList.add('firing');
  audio.fire();status(choice?'命中コース！ 着弾を確認しよう。':'発射！ 景品を狙おう。');
 }
@@ -148,7 +223,7 @@ function impact(shot){let t=shot.hit;if(!t||!t.alive){combo=0;wallet();hitIndica
 let predicted=shot.predicted||pos;
 let miss=Math.hypot(shot.point[0]-predicted[0],shot.point[1]-(predicted[1]+.04));
 combo++;const effect=resolveHit(t.type,shot,Math.min(1,Number.isFinite(shot.hitQuality)?shot.hitQuality:miss/allowance));t.health-=effect.power;t.bump=effect.lucky?.45:.22;showImpact(screen(shot.point));hitIndicator(shot.point,effect.glance?'かすり':'HIT!',effect.glance);audio.hit();let color=effect.lucky?'#ffe08e':t.type.value>=16?'#ffdfaa':'#9df7e3';for(let i=0;i<8;i++)sparks.push({pos:shot.point.slice(),vel:[(Math.random()-.5)*2.5,Math.random()*2.3+.25,(Math.random()-.5)*2],age:0,life:.42,color});
-if(t.health<=0){if(effect.lucky)showBanner('🎯 ラッキーショット！','急所に命中！ 一撃で景品獲得',1350);t.alive=false;t.fall=0;earned+=t.type.value;coins+=t.type.value;audio.win();float(`＋${t.type.value} 枚！`,pos,'win');status(`🎉 ${t.type.name} が倒れた！ ${t.type.value}枚を獲得！`);setTimeout(()=>{if(state!=='playing')return;let n=types[Math.floor(Math.random()*types.length)];t.type=n;t.health=n.hp;t.alive=true;t.fall=0;t.tag.textContent=`🪙 ${n.value}`;t.tag.className='scoreTag'+(n.value>=24?' jack':'')},1800)}else{const shaken=t.health<=t.type.hp*.45?' かなり傾いている！':t.health<=t.type.hp*.75?' ぐらついた！':'';status(effect.glance?`かすった！ ${t.type.name}はびくともしない。`:`${t.type.name}に命中！${shaken} あと少しで倒せるかも。`)}wallet()}
+if(t.health<=0){if(effect.lucky)showBanner('🎯 ラッキーショット！','急所に命中！ 一撃で景品獲得',1350);t.alive=false;t.fall=0;earned+=t.type.value;coins+=t.type.value;audio.win();float(`＋${t.type.value} 枚！`,pos,'win');status(`🎉 ${t.type.name} が倒れた！ ${t.type.value}枚を獲得！`);setTimeout(()=>{if(state!=='playing')return;let n=nextPrizeType();t.type=n;t.health=n.hp;t.alive=true;t.fall=0;t.tag.textContent=`🪙 ${n.value}`;t.tag.className='scoreTag'+(n.value>=24?' jack':'')},1800)}else{const shaken=t.health<=t.type.hp*.45?' かなり傾いている！':t.health<=t.type.hp*.75?' ぐらついた！':'';status(effect.glance?`かすった！ ${t.type.name}はびくともしない。`:`${t.type.name}に命中！${shaken} あと少しで倒せるかも。`)}wallet()}
 function hitIndicator(point,label,dim=false){
  const p=screen(point);if(!p)return;
  const el=document.createElement('div');el.textContent=label;
