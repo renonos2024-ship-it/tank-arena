@@ -25,7 +25,7 @@
 <div class="scoop-controls"><section class="pan"><div class="section">ポイを選択（1クレジット＝メダル1枚）</div><div class="gear"><button data-gear="1" class="current"><b>🟡 1枚</b><small>紙ポイ</small></button><button data-gear="3"><b>🔵 3枚</b><small>丈夫なポイ</small></button><button data-gear="5"><b>🟣 5枚</b><small>金縁ポイ</small></button></div><div class="dur"><i id="durFill"></i></div><div class="dur-label"><span id="durText">ポイの耐久：100%</span><span id="poiName">紙ポイ</span></div></section><div class="rightcol"><button class="scoop" id="scoop">🐟 すくう！</button><div class="extras"><button id="sound" aria-pressed="true">🔊 BGM ON</button><button id="refill">＋30枚</button></div></div></div>
 <div class="stage-tools"><span>🌊 ステージ</span><select id="stageSelect" aria-label="ステージ選択"></select><button id="stageNextBtn">次の水槽 →</button><button id="viewReset" type="button">◎ 全体表示</button><span class="boss-hint" id="bossHint">ヌシ出現待ち</span></div>
 <div class="stats"><div>今回の獲得<strong id="session">0 枚</strong></div><div>連続捕獲<strong id="streak">0 回</strong></div><div>金魚図鑑<strong id="collection">0 種</strong></div><div>祭りゲージ<strong id="fever">0 / 5</strong></div></div><div class="status" id="status">広い水槽を探索しながら、白いポイ1枚を操作。すくうボタンで捕獲、破れても自動交換。</div><p class="foot">オリジナル3D試作版・課金／換金なし。魚の移動・ポイの耐久・捕獲判定は実際のゲームロジックで動作します。BGMは「プレイ開始」後に再生されます。聞こえない場合は音量やBGM ONを確認してください。</p></main>
-<script>
+<script src="../shared/store.js"></script><script>
 (()=>{'use strict';
 const $=id=>document.getElementById(id),canvas=$('scene'),arena=$('arena'),overlay=$('overlay');
 const gl=canvas.getContext('webgl',{antialias:true,alpha:false,powerPreference:'high-performance'})||canvas.getContext('experimental-webgl');
@@ -144,8 +144,9 @@ function tryBoss(){
 }
 
 let coins=120,earned=0,stage=0,timeLeft=30,elapsed=0,last=performance.now(),playing=false,net=null,netChoice=1,aim={x:.5,y:.60},netWorld=[0,-.04,0],lastDragSpeed=0,lift=null,fishes=[],tags=[],ripple=[],particles=[],combo=0,totalCaught=0,feverGauge=0,feverLeft=0,known=new Set(),timeDirty=0,flashTimer=null,musicEnabled=true;
-try{const stored=localStorage.getItem('yoimachi_medal_bank_v1');if(stored!==null&&stored!==''){const v=Number(stored);if(Number.isFinite(v)&&v>=0&&v<1000000)coins=Math.floor(v)}}catch(e){}
-function persist(){try{localStorage.setItem('yoimachi_medal_bank_v1',String(coins))}catch(e){}}
+coins=window.YoimachiBank?.balance()??120;let bankSnapshot=coins;
+try{const collection=window.YoimachiBank?.read().games.goldfish?.known;if(Array.isArray(collection))known=new Set(collection)}catch(e){window.YoimachiSaveError(e.message)}
+function persist(){try{const delta=coins-bankSnapshot;const saved=window.YoimachiBank.update(s=>{s.wallet+=delta;s.games.goldfish={...(s.games.goldfish||{}),known:[...known]}});coins=saved.wallet;bankSnapshot=coins}catch(e){playing=false;window.YoimachiSaveError(e.message)}}
 function wallet(){coins=Math.max(0,coins);$('coins').textContent=coins;$('earned').textContent=earned;$('combo').textContent=combo;$('streak').textContent=totalCaught+' 回';$('session').textContent=earned+' 枚';$('collection').textContent=known.size+' 種';$('fever').textContent=feverLeft>0?'FEVER '+Math.ceil(feverLeft)+'秒':feverGauge+' / 5';persist()}
 function status(t){$('status').textContent=t}
 function popup(a,b,time=1050){$('flashTitle').textContent=a;$('flashSub').textContent=b;$('flash').classList.add('on');clearTimeout(flashTimer);flashTimer=setTimeout(()=>$('flash').classList.remove('on'),time)}

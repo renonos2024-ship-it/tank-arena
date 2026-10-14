@@ -1,0 +1,40 @@
+[
+  {
+    "mode": "idle",
+    "simulatedSeconds": 1800,
+    "wallSeconds": 5.100368948,
+    "inputCosts": 0,
+    "rejected": 0,
+    "maxBodies": 130,
+    "ledger": {
+      "initial": 130,
+      "inserted": 0,
+      "front": 0,
+      "side": 0
+    },
+    "remaining": 130,
+    "inventoryError": 0,
+    "maxStepMs": 72.22130900000002,
+    "p95SampledStepMs": 0.1033750000000282,
+    "note": "Node headless physical simulation, not browser rendering FPS or iPhone 30-minute play."
+  },
+  {
+    "mode": "active",
+    "simulatedSeconds": 1800,
+    "wallSeconds": 221.799520866,
+    "inputCosts": 694,
+    "rejected": 378,
+    "maxBodies": 260,
+    "ledger": {
+      "initial": 130,
+      "inserted": 330,
+      "front": 29,
+      "side": 171
+    },
+    "remaining": 260,
+    "inventoryError": 0,
+    "maxStepMs": 62.59644200000912,
+    "p95SampledStepMs": 3.870530999993207,
+    "note": "Node headless physical simulation, not browser rendering FPS or iPhone 30-minute play."
+  }
+]

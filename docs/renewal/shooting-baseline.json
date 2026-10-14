@@ -1,0 +1,474 @@
+{
+  "seed": 20261014,
+  "sourceSha256": "0d5cbe76b2739e825d70e8b0966ad4c55319d2d363e58722b12033e2cd9f375b",
+  "totalShots": 900000,
+  "assumptions": "Hypothetical fixed hit/precision profiles; source damage and target weights unchanged; target persistence until defeat; no stage geometry, session abandonment, events or JP. Not an observed player RTP or full required economy validation.",
+  "profiles": [
+    {
+      "name": "beginner",
+      "hit": 0.45,
+      "q": [
+        0.2,
+        1
+      ]
+    },
+    {
+      "name": "standard",
+      "hit": 0.68,
+      "q": [
+        0.05,
+        0.75
+      ]
+    },
+    {
+      "name": "skilled",
+      "hit": 0.88,
+      "q": [
+        0,
+        0.4
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "profile": "beginner",
+      "cost": 1,
+      "shots": 100000,
+      "input": 100000,
+      "paid": 46057,
+      "rtp": 0.46057,
+      "hits": 44710,
+      "critical": 803,
+      "lucky": 7,
+      "rarePayout": 16901,
+      "refills": 1795,
+      "endingBank": 27,
+      "minBank": 0,
+      "maxBank": 145,
+      "trajectory": [
+        24,
+        16,
+        23,
+        79,
+        57,
+        4,
+        10,
+        28,
+        82,
+        27
+      ],
+      "unfinished": {
+        "value": 14,
+        "hp": 3
+      }
+    },
+    {
+      "profile": "beginner",
+      "cost": 3,
+      "shots": 100000,
+      "input": 300000,
+      "paid": 128201,
+      "rtp": 0.42733666666666664,
+      "hits": 44806,
+      "critical": 1178,
+      "lucky": 14,
+      "rarePayout": 49025,
+      "refills": 5724,
+      "endingBank": 41,
+      "minBank": 0,
+      "maxBank": 146,
+      "trajectory": [
+        21,
+        10,
+        48,
+        13,
+        24,
+        5,
+        8,
+        2,
+        34,
+        41
+      ],
+      "unfinished": {
+        "value": 58,
+        "hp": 54
+      }
+    },
+    {
+      "profile": "beginner",
+      "cost": 5,
+      "shots": 100000,
+      "input": 500000,
+      "paid": 206660,
+      "rtp": 0.41332,
+      "hits": 45147,
+      "critical": 1418,
+      "lucky": 17,
+      "rarePayout": 78113,
+      "refills": 9775,
+      "endingBank": 30,
+      "minBank": 0,
+      "maxBank": 146,
+      "trajectory": [
+        38,
+        16,
+        4,
+        40,
+        15,
+        57,
+        11,
+        29,
+        28,
+        30
+      ],
+      "unfinished": {
+        "value": 7,
+        "hp": 3
+      }
+    },
+    {
+      "profile": "standard",
+      "cost": 1,
+      "shots": 100000,
+      "input": 100000,
+      "paid": 88737,
+      "rtp": 0.88737,
+      "hits": 67890,
+      "critical": 4138,
+      "lucky": 16,
+      "rarePayout": 35366,
+      "refills": 372,
+      "endingBank": 17,
+      "minBank": 0,
+      "maxBank": 196,
+      "trajectory": [
+        47,
+        59,
+        23,
+        16,
+        136,
+        114,
+        101,
+        66,
+        47,
+        17
+      ],
+      "unfinished": {
+        "value": 90,
+        "hp": 14
+      }
+    },
+    {
+      "profile": "standard",
+      "cost": 3,
+      "shots": 100000,
+      "input": 300000,
+      "paid": 250536,
+      "rtp": 0.83512,
+      "hits": 67912,
+      "critical": 5329,
+      "lucky": 23,
+      "rarePayout": 94059,
+      "refills": 1646,
+      "endingBank": 36,
+      "minBank": 0,
+      "maxBank": 207,
+      "trajectory": [
+        95,
+        114,
+        95,
+        19,
+        43,
+        31,
+        183,
+        127,
+        20,
+        36
+      ],
+      "unfinished": {
+        "value": 26,
+        "hp": 20
+      }
+    },
+    {
+      "profile": "standard",
+      "cost": 5,
+      "shots": 100000,
+      "input": 500000,
+      "paid": 400664,
+      "rtp": 0.801328,
+      "hits": 67923,
+      "critical": 6684,
+      "lucky": 26,
+      "rarePayout": 149935,
+      "refills": 3310,
+      "endingBank": 84,
+      "minBank": 0,
+      "maxBank": 167,
+      "trajectory": [
+        103,
+        28,
+        64,
+        72,
+        25,
+        29,
+        120,
+        108,
+        57,
+        84
+      ],
+      "unfinished": {
+        "value": 90,
+        "hp": 74
+      }
+    },
+    {
+      "profile": "skilled",
+      "cost": 1,
+      "shots": 100000,
+      "input": 100000,
+      "paid": 138349,
+      "rtp": 1.38349,
+      "hits": 87920,
+      "critical": 11122,
+      "lucky": 26,
+      "rarePayout": 50146,
+      "refills": 0,
+      "endingBank": 38469,
+      "minBank": 112,
+      "maxBank": 38469,
+      "trajectory": [
+        3849,
+        7633,
+        11913,
+        15825,
+        19429,
+        23437,
+        26911,
+        30813,
+        34706,
+        38469
+      ],
+      "unfinished": {
+        "value": 7,
+        "hp": 3
+      }
+    },
+    {
+      "profile": "skilled",
+      "cost": 3,
+      "shots": 100000,
+      "input": 300000,
+      "paid": 389569,
+      "rtp": 1.2985633333333333,
+      "hits": 88041,
+      "critical": 14337,
+      "lucky": 38,
+      "rarePayout": 144639,
+      "refills": 0,
+      "endingBank": 89689,
+      "minBank": 68,
+      "maxBank": 89703,
+      "trajectory": [
+        9015,
+        17909,
+        26665,
+        35195,
+        44243,
+        53340,
+        62632,
+        71636,
+        80351,
+        89689
+      ],
+      "unfinished": {
+        "value": 32,
+        "hp": 10
+      }
+    },
+    {
+      "profile": "skilled",
+      "cost": 5,
+      "shots": 100000,
+      "input": 500000,
+      "paid": 628235,
+      "rtp": 1.25647,
+      "hits": 87926,
+      "critical": 18242,
+      "lucky": 48,
+      "rarePayout": 236805,
+      "refills": 0,
+      "endingBank": 128355,
+      "minBank": 97,
+      "maxBank": 128365,
+      "trajectory": [
+        13026,
+        25306,
+        38683,
+        51960,
+        64721,
+        77246,
+        90611,
+        103449,
+        115937,
+        128355
+      ],
+      "unfinished": {
+        "value": 9,
+        "hp": 3
+      }
+    }
+  ],
+  "perPrize": [
+    {
+      "name": "三色だんご",
+      "value": 1,
+      "hp": 1
+    },
+    {
+      "name": "小さなアヒル",
+      "value": 2,
+      "hp": 1
+    },
+    {
+      "name": "豆まねき猫",
+      "value": 3,
+      "hp": 1
+    },
+    {
+      "name": "ブリキロボ",
+      "value": 4,
+      "hp": 1
+    },
+    {
+      "name": "紅だるま",
+      "value": 5,
+      "hp": 2
+    },
+    {
+      "name": "いたずらおばけ",
+      "value": 6,
+      "hp": 2
+    },
+    {
+      "name": "抹茶だんご",
+      "value": 7,
+      "hp": 3
+    },
+    {
+      "name": "水兵アヒル",
+      "value": 8,
+      "hp": 3
+    },
+    {
+      "name": "鈴ねこ",
+      "value": 9,
+      "hp": 3
+    },
+    {
+      "name": "青いロボ",
+      "value": 10,
+      "hp": 4
+    },
+    {
+      "name": "花火だるま",
+      "value": 11,
+      "hp": 4
+    },
+    {
+      "name": "月夜のおばけ",
+      "value": 12,
+      "hp": 5
+    },
+    {
+      "name": "星空だんご",
+      "value": 14,
+      "hp": 9
+    },
+    {
+      "name": "船長アヒル",
+      "value": 16,
+      "hp": 10
+    },
+    {
+      "name": "小判ねこ",
+      "value": 18,
+      "hp": 11
+    },
+    {
+      "name": "からくりロボ",
+      "value": 20,
+      "hp": 12
+    },
+    {
+      "name": "福だるま",
+      "value": 22,
+      "hp": 14
+    },
+    {
+      "name": "夜光おばけ",
+      "value": 24,
+      "hp": 25
+    },
+    {
+      "name": "金箔だんご",
+      "value": 26,
+      "hp": 23
+    },
+    {
+      "name": "王冠アヒル",
+      "value": 29,
+      "hp": 25
+    },
+    {
+      "name": "黒猫",
+      "value": 32,
+      "hp": 28
+    },
+    {
+      "name": "流星ロボ",
+      "value": 36,
+      "hp": 31
+    },
+    {
+      "name": "金だるま",
+      "value": 40,
+      "hp": 37
+    },
+    {
+      "name": "宝石おばけ",
+      "value": 45,
+      "hp": 42
+    },
+    {
+      "name": "虹色だんご",
+      "value": 50,
+      "hp": 47
+    },
+    {
+      "name": "銀河アヒル",
+      "value": 58,
+      "hp": 54
+    },
+    {
+      "name": "白金ねこ",
+      "value": 66,
+      "hp": 62
+    },
+    {
+      "name": "極光ロボ",
+      "value": 75,
+      "hp": 70
+    },
+    {
+      "name": "七宝だるま",
+      "value": 90,
+      "hp": 84
+    },
+    {
+      "name": "幻影おばけ",
+      "value": 110,
+      "hp": 103
+    }
+  ]
+}

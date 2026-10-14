@@ -1,0 +1,6 @@
+{
+  "name": "yoimachi-medal-yokocho", "version": "0.4.0", "private": true, "type": "module",
+  "scripts": {"test":"node --test tests/*.test.mjs", "build":"node scripts/build.mjs", "balance:baseline":"node scripts/shooting-baseline.mjs"},
+  "dependencies": {"@dimforge/rapier3d-compat":"0.21.0", "three":"0.186.1"},
+  "devDependencies": {"esbuild":"0.25.12"}
+}
