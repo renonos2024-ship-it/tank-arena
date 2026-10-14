@@ -1,0 +1,2 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';
+for(const game of ['shooting-3d','goldfish-3d','arcade-3d'])test(`${game}: classic scripts parse and canonical bank integration remains`,()=>{const html=fs.readFileSync(`medal-yokocho/${game}/index.html`,'utf8');for(const match of html.matchAll(/<script>([\s\S]*?)<\/script>/g))new vm.Script(match[1]);assert.ok(html.includes('../shared/store.js'));assert.ok(html.includes('YoimachiBank'));assert.ok(!html.includes('localStorage.setItem'));});
