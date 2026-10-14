@@ -52,10 +52,13 @@ function newCoin(x,z,heavy=false,free=false){if(coinUnits.length>=220)coinUnits.
 function init(){
  coinUnits=[];tower=[];falling=[];pushZ=-3.15;prevPushZ=pushZ;scheduled=[];tick=0;
  // A spaced initial carpet remains stable until the pusher reaches it.
- for(let row=0;row<8;row++)for(let col=0;col<12;col++){
-  const x=(col-5.5)*.68+(row%2)*.09,z=-3.45+row*.61;
+ for(let row=0;row<10;row++)for(let col=0;col<12;col++){
+  const x=(col-5.5)*.62+(row%2)*.09,z=-3.35+row*.58;
   newCoin(x,z,false,true);
  }
+ // Front-edge coins require real physical contact to tumble into the payout slot.
+ for(let row=0;row<2;row++)for(let col=0;col<10;col++)
+  newCoin((col-4.5)*.76,row===0?2.50:3.12,false,true);
  // Two independent towers. Layers are dislodged in chunks, not by a lottery.
  for(let side=0;side<2;side++){
   const x=side===0?-1.52:1.55,z=1.50;
